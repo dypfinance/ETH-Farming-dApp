@@ -184,7 +184,7 @@ export default function initStaking({ staking, apr, liquidity='ETH', lock, expir
         }
 
         refreshBalance = async () => {
-            let coinbase = await window.getCoinbase()
+            let coinbase = window.coinbase_address
             this.setState({ coinbase })
             try {
                 let _bal = reward_token.balanceOf(coinbase)
