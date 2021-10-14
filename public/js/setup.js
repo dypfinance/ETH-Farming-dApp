@@ -3566,12 +3566,22 @@ async function getMaxFee(){
 }
 
 // function to connect metamask
-async function connectWallet() {
-    if (window.ethereum) {
-        window.web3 = new Web3(window.ethereum)
-        try {
-            await window.ethereum.enable()
-            console.log("Connected!")
+async function connectWallet(provider, walletType) {
+	//walletConnect
+	if (walletType) {
+		await provider.enable()
+		window.web3 = new Web3(provider)
+		let coinbase_address = await window.web3.eth.getAccounts()
+		window.coinbase_address = coinbase_address.pop()
+
+		window.IS_CONNECTED = true
+		return true
+	} else if(window.ethereum) {
+		//Web3 Providers
+		window.web3 = new Web3(window.ethereum)
+		try {
+			//await window.ethereum.enable()
+			console.log("Connected!")
 			window.IS_CONNECTED = true
 			if ( window.ethereum.isCoin98 )
 				window.WALLET_TYPE = 'coin98'
@@ -3579,19 +3589,19 @@ async function connectWallet() {
 				window.WALLET_TYPE = 'metamask'
 			let coinbase_address = await window.ethereum.request({method: 'eth_accounts'})
 			window.coinbase_address = coinbase_address.pop()
-            return true;
-        } catch (e) {
-            console.error(e)
-            throw new Error("User denied wallet connection!")
-        }
-    } else if (window.web3) {
-        window.web3 = new Web3(window.web3.currentProvider)
-        console.log("connected to old web3")
+			return true;
+		} catch (e) {
+			console.error(e)
+			throw new Error("User denied wallet connection!")
+		}
+	} else if (window.web3) {
+		window.web3 = new Web3(window.web3.currentProvider)
+		console.log("connected to old web3")
 		window.IS_CONNECTED = true
-        return true
-    } else {
-        throw new Error("No web3 detected!")
-    }
+		return true
+	} else {
+		throw new Error("No web3 detected!")
+	}
 }
 
 function param(name) {

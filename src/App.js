@@ -22,6 +22,8 @@ import Footer from './components/footer'
 
 import getFormattedNumber from './functions/get-formatted-number';
 
+import WalletConnectProvider from "@walletconnect/web3-provider";
+
 const eth_address = 'ETH'
 const wbtc_address = '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599'
 const usdc_address = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
@@ -140,7 +142,7 @@ class App extends React.Component {
     handleConnection = async () => {
         this.hideModal()
         try {
-          let is_wallet_connected = await window.connectWallet()
+          let is_wallet_connected = await window.connectWallet(undefined, false)
           let referrer = window.param('r')
 
           if (is_wallet_connected) {
@@ -161,6 +163,40 @@ class App extends React.Component {
           }
         } catch (e) {
           window.alertify.error(String(e))
+        }
+    }
+
+    handleConnectionWalletConnect = async () => {
+        try {
+
+            let provider = new WalletConnectProvider({
+                rpc: {
+                    1: "https://mainnet.infura.io/v3/94608dc6ddba490697ec4f9b723b586e"
+                }
+            })
+
+            let is_wallet_connected = await window.connectWallet(provider, true)
+            //await setupnetwork()
+            let referrer = window.param('r')
+
+            if (is_wallet_connected) {
+                if (referrer) {
+                    referrer = String(referrer).trim().toLowerCase()
+                }
+                if (!window.web3.utils.isAddress(referrer)) {
+                    referrer = window.config.ZERO_ADDRESS
+                }
+            }
+            this.setState({is_wallet_connected, coinbase: await window.web3.eth.getCoinbase(), referrer})
+            try {
+                let the_graph_result = await window.refresh_the_graph_result()
+                this.setState({ the_graph_result: JSON.parse(JSON.stringify(the_graph_result)) })
+            } catch (e) {
+                // window.alertify.error("Cannot fetch TVL");
+                console.error("Cannot fetch TVL: "+e)
+            }
+        } catch (e) {
+            window.alertify.error(String(e))
         }
     }
 
@@ -196,6 +232,15 @@ class App extends React.Component {
                                                     </div>
                                                     <div className="sc-jnlKLf gJPfsC">
                                                         <img src="/img/wallets/metamask.svg" alt="Icon" />
+                                                    </div>
+                                                </button>
+                                                <button onClick={this.handleConnectionWalletConnect} id="connect-WALLETCONNECT"
+                                                        className="sc-kvZOFW sc-hqyNC sc-dNLxif fJOgmn">
+                                                    <div className="sc-jbKcbu GeCum">
+                                                        <div color="#E8831D" className="sc-bbmXgH eDNUCi">WalletConnect</div>
+                                                    </div>
+                                                    <div className="sc-jnlKLf gJPfsC">
+                                                        <img src="/img/wallets/walletConnect.svg" height={'25px'} alt="Icon" />
                                                     </div>
                                                 </button>
                                                 <button onClick={this.handleConnection} id="connect-COIN98" className="sc-kvZOFW sc-hqyNC sc-dNLxif fJOgmn">
