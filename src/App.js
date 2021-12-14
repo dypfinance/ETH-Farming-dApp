@@ -5,8 +5,9 @@ import { Route } from 'react-router-dom'
 import initStaking from './components/staking'
 import initConstantStaking from './components/constant-staking'
 import initBuybackStaking from './components/buy-back-staking'
-import initConstantStakingNew from "./components/constant-staking-new";
+import initConstantStakingNew from "./components/constant-staking-new"
 import initBuybackStakingNew from './components/buy-back-staking-new'
+import initStakingNew from "./components/staking-new"
 import StakingList from './components/staking-list'
 import ConstantStakingList from './components/constant-staking-list'
 import StakingListEth from './components/staking-list-eth.js'
@@ -16,6 +17,7 @@ import StakingListUsdt from './components/staking-list-usdt.js'
 import Governance from './components/governance'
 
 import StakingStats from './components/staking-stats'
+import StakingStatsNew from './components/staking-stats-new'
 import ReferralStats from './components/referral-stats'
 import FullStakingStats from './components/full-staking-stats'
 
@@ -70,6 +72,12 @@ const ConstantStaking2 = initConstantStakingNew({ staking: window.constant_staki
 const BuybackStaking1 = initBuybackStakingNew({ staking: window.buyback_staking1_1, constant: window.constant_staking_new3, apr: 30, expiration_time: '14 December 2022' })
 const BuybackStaking2 = initBuybackStakingNew({ staking: window.buyback_staking1_2, constant: window.constant_staking_new4, apr: 100, expiration_time: '14 December 2022' })
 
+//Farming New
+const StakingNew1 = initStakingNew({token: window.token_new, staking: window.farming_new_1, constant: window.constant_staking_new5, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022'})
+const StakingNew2 = initStakingNew({token: window.token_new, staking: window.farming_new_2, constant: window.constant_staking_new6, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022'})
+const StakingNew3 = initStakingNew({token: window.token_new, staking: window.farming_new_3, constant: window.constant_staking_new7, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022'})
+const StakingNew4 = initStakingNew({token: window.token_new, staking: window.farming_new_4, constant: window.constant_staking_new8, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022'})
+const StakingNew5 = initStakingNew({token: window.token_new, staking: window.farming_new_5, constant: window.constant_staking_new9, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022'})
 
 const Modal = ({ handleClose, show, children }) => {
     const showHideClassName = show ? "modal display-block" : "modal display-none";
@@ -89,7 +97,7 @@ const Modal = ({ handleClose, show, children }) => {
     )
 }
 
-let { BigNumber, LP_IDs } = window
+let { BigNumber, LP_IDs, LP_IDs_V2 } = window
 
 class App extends React.Component {
 
@@ -166,6 +174,8 @@ class App extends React.Component {
               }
           }
           this.setState({is_wallet_connected, coinbase: await window.web3.eth.getCoinbase(), referrer})
+
+            window.wait(2000)
 
             try {
                 let the_graph_result_ETH_V2 = await window.get_the_graph_eth_v2()
@@ -379,6 +389,15 @@ class App extends React.Component {
               {/*Buyback New*/}
               <Route exact path='/staking-buyback-1' render={props => <BuybackStaking1 the_graph_result={this.state.the_graph_result_ETH_V2} {...props} />} />
               <Route exact path='/staking-buyback-2' render={props => <BuybackStaking2 the_graph_result={this.state.the_graph_result_ETH_V2} {...props} />} />
+
+              {/*Farming New*/}
+              <Route exact path='/farming-new-1' render={props => <StakingNew1 the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[0]} {...props} />} />
+              <Route exact path='/farming-new-2' render={props => <StakingNew2 the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[1]} {...props} />} />
+              <Route exact path='/farming-new-3' render={props => <StakingNew3 the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[2]} {...props} />} />
+              <Route exact path='/farming-new-4' render={props => <StakingNew4 the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[3]} {...props} />} />
+              <Route exact path='/farming-new-5' render={props => <StakingNew5 the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[4]} {...props} />} />
+
+              <Route exact path="/staking-stats-new" render={props => <StakingStatsNew the_graph_result={this.state.the_graph_result_ETH_V2} {...props} />} />
 
           </div>
 

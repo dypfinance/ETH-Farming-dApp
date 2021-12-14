@@ -83,6 +83,24 @@ const VAULT_ADDRESSES_LIST = LP_ID_LIST.map(id => id.split('-')[1])
 
 window.LP_ID_LIST = LP_ID_LIST
 
+
+const LP_IDs_V2 =
+	{
+		"weth": [
+			"0x7463286a379f6f128058bb92b355e3d6e8bdb219-0xa68bbe793ad52d0e62bbf34a67f02235ba69e737",
+			"0x7463286a379f6f128058bb92b355e3d6e8bdb219-0xcfd970494a0b3c52a81dce1ecbff2245e6b0b0e7",
+			"0x7463286a379f6f128058bb92b355e3d6e8bdb219-0x49d02cf81cc352517350f25e200365360426af94",
+			"0x7463286a379f6f128058bb92b355e3d6e8bdb219-0xf51965c570419f2576ec9aead6a3c5f674424a99",
+			"0x7463286a379f6f128058bb92b355e3d6e8bdb219-0x997a7254e5567d0a70329defcc1e4d29d71ba224",
+		]
+	}
+
+window.LP_IDs_V2 = LP_IDs_V2
+
+const LP_ID_LIST_V2 = Object.keys(LP_IDs_V2).map(key => LP_IDs_V2[key]).flat()
+
+window.LP_ID_LIST_V2 = LP_ID_LIST_V2
+
 window.config = {
 	max_referral_addresses_per_call: 4,
 	ZERO_ADDRESS: '0x0000000000000000000000000000000000000000',
@@ -192,13 +210,77 @@ window.config = {
 	constant_stakingnew_new3_address: '0x471beCc72AD487249efE521bf9b6744b882830DF',
 	constant_stakingnew_new4_address: '0x7b7132E7BF4e754855191a978F3979e1E3c8617b',
 
+	//Farming new
+	token_new_address: '0x7463286a379f6f128058bb92b355e3d6e8bdb219',
+	farming_new_1_address: '0xa68BBe793ad52d0E62bBf34A67F02235bA69E737',
+	constant_stakingnew_new5_address: '0x0b92E7f074e7Ade0181A29647ea8474522e6A7C2',
+
+	//Farming New
+	farming_new_2_address: '0xCFd970494a0b3C52a81dcE1EcBFF2245e6b0B0E7',
+	constant_stakingnew_new6_address: '0xff32a38016422F51e8C0aF5D333472392822FeEf',
+
+
+	//Farming New
+	farming_new_3_address: '0x49D02CF81Cc352517350F25E200365360426aF94',
+	constant_stakingnew_new7_address: '0x62AAE8C0c50038236d075AC595Ae0BE4F201bBdd',
+
+	//Farming New
+	farming_new_4_address: '0xf51965c570419F2576ec9AeAD6A3C5F674424A99',
+	constant_stakingnew_new8_address: '0xb67F464b558e3055C2B6F017546Ed53b2e6333d7',
+
+	//Farming New
+	farming_new_5_address: '0x997A7254E5567d0A70329DEFCc1E4d29d71Ba224',
+	constant_stakingnew_new9_address: '0x1aB008CbfC99d0CA7e3FD8987ce1ebf832506F53',
+
 	reward_token_idyp_address: '0xbd100d061e120b2c67a24453cf6368e63f1be056',
-	USDC_address: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
+	USDC_address: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+
+	claim_as_eth_address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+	claim_as_usdt_address: '0xdac17f958d2ee523a2206206994597c13d831ec7'
 }
 
 // add buyback supported deposit tokens here, lowercase
 // THESE TOKENS MUST HAVE BEEN ALREADY ADDED TO SMART CONTRACT!
 window.buyback_tokens = {
+	'0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2': {
+		symbol: 'WETH', decimals: 18
+	},
+	'0x2260fac5e5542a773aa44fbcfedf7c193bc2c599': {
+		symbol: 'WBTC', decimals: 8
+	},
+	'0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48': {
+		symbol: 'USDC', decimals: 6
+	},
+	'0xdac17f958d2ee523a2206206994597c13d831ec7': {
+		symbol: 'USDT', decimals: 6
+	},
+	'0x956f47f50a910163d8bf957cf5846d573e7f87ca': {
+		symbol: 'FEI', decimals: 18
+	},
+	'0x1f9840a85d5af5bf1d1762f925bdaddc4201f984': {
+		symbol: 'UNI', decimals: 18
+	},
+	'0x6b175474e89094c44da98b954eedeac495271d0f': {
+		symbol: 'DAI', decimals: 18
+	},
+	'0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2': {
+		symbol: 'MKR', decimals: 18
+	},
+	'0x514910771af9ca656af840dff83e8264ecf986ca': {
+		symbol: 'LINK', decimals: 18
+	},
+	'0x77777feddddffc19ff86db637967013e6c6a116c': {
+		symbol: 'TORN', decimals: 18
+	},
+	'0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9': {
+		symbol: 'AAVE', decimals: 18
+	},
+	'0x0f51bb10119727a7e5ea3538074fb341f56b09ad': {
+		symbol: 'DAO', decimals: 18
+	}
+}
+
+window.buyback_tokens_farming = {
 	'0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2': {
 		symbol: 'WETH', decimals: 18
 	},
@@ -4152,11 +4234,28 @@ window.reward_token_idyp = new TOKEN("REWARD_TOKEN_IDYP")
 window.constant_staking_new1 = new CONSTANT_STAKING_NEW("CONSTANT_STAKINGNEW_NEW1")
 window.constant_staking_new2 = new CONSTANT_STAKING_NEW("CONSTANT_STAKINGNEW_NEW2")
 
-//Constatnt staking new for Buyback
+//Constant staking new for Buyback
 window.buyback_staking1_1 = new BUYBACK_STAKING('BUYBACK_STAKING1_1')
 window.buyback_staking1_2 = new BUYBACK_STAKING('BUYBACK_STAKING1_2')
 window.constant_staking_new3 = new CONSTANT_STAKING_NEW("CONSTANT_STAKINGNEW_NEW3")
 window.constant_staking_new4 = new CONSTANT_STAKING_NEW("CONSTANT_STAKINGNEW_NEW4")
+
+/* Farming New */
+window.token_new = new TOKEN("TOKEN_NEW")
+window.farming_new_1 = new STAKING("FARMING_NEW_1")
+window.constant_staking_new5 = new CONSTANT_STAKING_NEW("CONSTANT_STAKINGNEW_NEW5")
+
+window.farming_new_2 = new STAKING("FARMING_NEW_2")
+window.constant_staking_new6 = new CONSTANT_STAKING_NEW("CONSTANT_STAKINGNEW_NEW6")
+
+window.farming_new_3 = new STAKING("FARMING_NEW_3")
+window.constant_staking_new7 = new CONSTANT_STAKING_NEW("CONSTANT_STAKINGNEW_NEW7")
+
+window.farming_new_4 = new STAKING("FARMING_NEW_4")
+window.constant_staking_new8 = new CONSTANT_STAKING_NEW("CONSTANT_STAKINGNEW_NEW8")
+
+window.farming_new_5 = new STAKING("FARMING_NEW_5")
+window.constant_staking_new9 = new CONSTANT_STAKING_NEW("CONSTANT_STAKINGNEW_NEW9")
 
 
 /**
@@ -4487,3 +4586,14 @@ async function getUniswapRouterContract(address=window.config.uniswap_router_add
 	return (new window.web3.eth.Contract(window.UNISWAP_ROUTER_ABI, address, {from: await getCoinbase()}))
 }
 
+/* iDYP Staking Stats V2 */
+
+const FarmingStakingAddresses = [
+	"0xa68bbe793ad52d0e62bbf34a67f02235ba69e737-0x0b92e7f074e7ade0181a29647ea8474522e6a7c2",
+	"0xcfd970494a0b3c52a81dce1ecbff2245e6b0b0e7-0xff32a38016422f51e8c0af5d333472392822feef",
+	"0x49d02cf81cc352517350f25e200365360426af94-0x62aae8c0c50038236d075ac595ae0be4f201bbdd",
+	"0xf51965c570419f2576ec9aead6a3c5f674424a99-0xb67f464b558e3055c2b6f017546ed53b2e6333d7",
+	"0x997a7254e5567d0a70329defcc1e4d29d71ba224-0x1ab008cbfc99d0ca7e3fd8987ce1ebf832506f53"
+]
+
+window.FarmingStakingAddresses = FarmingStakingAddresses
