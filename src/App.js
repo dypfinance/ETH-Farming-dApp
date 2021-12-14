@@ -6,6 +6,7 @@ import initStaking from './components/staking'
 import initConstantStaking from './components/constant-staking'
 import initBuybackStaking from './components/buy-back-staking'
 import initConstantStakingNew from "./components/constant-staking-new";
+import initBuybackStakingNew from './components/buy-back-staking-new'
 import StakingList from './components/staking-list'
 import ConstantStakingList from './components/constant-staking-list'
 import StakingListEth from './components/staking-list-eth.js'
@@ -64,6 +65,11 @@ const StakingUsdt90 = initStaking({token: window.token_usdt_90, staking: window.
 //Constant Staking New
 const ConstantStaking1 = initConstantStakingNew({ staking: window.constant_staking_new1, apr: 25, liquidity: eth_address, expiration_time: '14 December 2022' })
 const ConstantStaking2 = initConstantStakingNew({ staking: window.constant_staking_new2, apr: 50, liquidity: eth_address, expiration_time: '14 December 2022' })
+
+//Buyback New
+const BuybackStaking1 = initBuybackStakingNew({ staking: window.buyback_staking1_1, constant: window.constant_staking_new3, apr: 30, expiration_time: '14 December 2022' })
+const BuybackStaking2 = initBuybackStakingNew({ staking: window.buyback_staking1_2, constant: window.constant_staking_new4, apr: 100, expiration_time: '14 December 2022' })
+
 
 const Modal = ({ handleClose, show, children }) => {
     const showHideClassName = show ? "modal display-block" : "modal display-none";
@@ -369,6 +375,10 @@ class App extends React.Component {
               {/*Constant Staking New*/}
               <Route exact path='/constant-staking-1' render={props => <ConstantStaking1 the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
               <Route exact path='/constant-staking-2' render={props => <ConstantStaking2 the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
+
+              {/*Buyback New*/}
+              <Route exact path='/staking-buyback-1' render={props => <BuybackStaking1 the_graph_result={this.state.the_graph_result_ETH_V2} {...props} />} />
+              <Route exact path='/staking-buyback-2' render={props => <BuybackStaking2 the_graph_result={this.state.the_graph_result_ETH_V2} {...props} />} />
 
           </div>
 

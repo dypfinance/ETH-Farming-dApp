@@ -186,6 +186,12 @@ window.config = {
 	constant_stakingnew_new1_address: '0xa4da28B8e42680916b557459D338aF6e2D8d458f',
 	constant_stakingnew_new2_address: '0x8A30Be7B2780b503ff27dBeaCdecC4Fe2587Af5d',
 
+	//Buyback new
+	buyback_staking1_1_address: '0xdCBB5B2148f0cf1Abd7757Ba04A5821fEaD80587',
+	buyback_staking1_2_address: '0xDC65C4277d626d6A29C9Dc42Eb396d354fa5E85b',
+	constant_stakingnew_new3_address: '0x471beCc72AD487249efE521bf9b6744b882830DF',
+	constant_stakingnew_new4_address: '0x7b7132E7BF4e754855191a978F3979e1E3c8617b',
+
 	reward_token_idyp_address: '0xbd100d061e120b2c67a24453cf6368e63f1be056',
 	USDC_address: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
 }
@@ -3837,6 +3843,7 @@ class BUYBACK_STAKING {
 		[
 			"stake",
 			"unstake",
+			"reInvest",
 			"claim",
 		].forEach(fn_name => {
 			this[fn_name] = async function (...args) {
@@ -4144,6 +4151,12 @@ window.reward_token_idyp = new TOKEN("REWARD_TOKEN_IDYP")
 //constant staking NEW CONTRACTS
 window.constant_staking_new1 = new CONSTANT_STAKING_NEW("CONSTANT_STAKINGNEW_NEW1")
 window.constant_staking_new2 = new CONSTANT_STAKING_NEW("CONSTANT_STAKINGNEW_NEW2")
+
+//Constatnt staking new for Buyback
+window.buyback_staking1_1 = new BUYBACK_STAKING('BUYBACK_STAKING1_1')
+window.buyback_staking1_2 = new BUYBACK_STAKING('BUYBACK_STAKING1_2')
+window.constant_staking_new3 = new CONSTANT_STAKING_NEW("CONSTANT_STAKINGNEW_NEW3")
+window.constant_staking_new4 = new CONSTANT_STAKING_NEW("CONSTANT_STAKINGNEW_NEW4")
 
 
 /**
