@@ -3814,6 +3814,7 @@ class STAKING {
 		[
 			"deposit",
 			"withdraw",
+			"claimAs",
 			"claim"
 		].forEach(fn_name => {
 			this[fn_name] = async function(...args) {
