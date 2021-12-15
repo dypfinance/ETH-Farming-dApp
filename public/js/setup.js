@@ -254,29 +254,11 @@ window.buyback_tokens = {
 	'0xdac17f958d2ee523a2206206994597c13d831ec7': {
 		symbol: 'USDT', decimals: 6
 	},
-	'0x956f47f50a910163d8bf957cf5846d573e7f87ca': {
-		symbol: 'FEI', decimals: 18
-	},
-	'0x1f9840a85d5af5bf1d1762f925bdaddc4201f984': {
-		symbol: 'UNI', decimals: 18
-	},
 	'0x6b175474e89094c44da98b954eedeac495271d0f': {
 		symbol: 'DAI', decimals: 18
 	},
-	'0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2': {
-		symbol: 'MKR', decimals: 18
-	},
 	'0x514910771af9ca656af840dff83e8264ecf986ca': {
 		symbol: 'LINK', decimals: 18
-	},
-	'0x77777feddddffc19ff86db637967013e6c6a116c': {
-		symbol: 'TORN', decimals: 18
-	},
-	'0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9': {
-		symbol: 'AAVE', decimals: 18
-	},
-	'0x0f51bb10119727a7e5ea3538074fb341f56b09ad': {
-		symbol: 'DAO', decimals: 18
 	}
 }
 
@@ -293,29 +275,14 @@ window.buyback_tokens_farming = {
 	'0xdac17f958d2ee523a2206206994597c13d831ec7': {
 		symbol: 'USDT', decimals: 6
 	},
-	'0x956f47f50a910163d8bf957cf5846d573e7f87ca': {
-		symbol: 'FEI', decimals: 18
-	},
-	'0x1f9840a85d5af5bf1d1762f925bdaddc4201f984': {
-		symbol: 'UNI', decimals: 18
-	},
 	'0x6b175474e89094c44da98b954eedeac495271d0f': {
 		symbol: 'DAI', decimals: 18
-	},
-	'0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2': {
-		symbol: 'MKR', decimals: 18
 	},
 	'0x514910771af9ca656af840dff83e8264ecf986ca': {
 		symbol: 'LINK', decimals: 18
 	},
-	'0x77777feddddffc19ff86db637967013e6c6a116c': {
-		symbol: 'TORN', decimals: 18
-	},
-	'0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9': {
-		symbol: 'AAVE', decimals: 18
-	},
-	'0x0f51bb10119727a7e5ea3538074fb341f56b09ad': {
-		symbol: 'DAO', decimals: 18
+	'0xbd100d061e120b2c67a24453cf6368e63f1be056': {
+		symbol: 'iDYP', decimals: 18
 	}
 }
 
