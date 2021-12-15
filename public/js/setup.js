@@ -254,12 +254,12 @@ window.buyback_tokens = {
 	'0xdac17f958d2ee523a2206206994597c13d831ec7': {
 		symbol: 'USDT', decimals: 6
 	},
-	'0x6b175474e89094c44da98b954eedeac495271d0f': {
-		symbol: 'DAI', decimals: 18
-	},
-	'0x514910771af9ca656af840dff83e8264ecf986ca': {
-		symbol: 'LINK', decimals: 18
-	}
+	// '0x6b175474e89094c44da98b954eedeac495271d0f': {
+	// 	symbol: 'DAI', decimals: 18
+	// },
+	// '0x514910771af9ca656af840dff83e8264ecf986ca': {
+	// 	symbol: 'LINK', decimals: 18
+	// }
 }
 
 window.buyback_tokens_farming = {
@@ -275,15 +275,15 @@ window.buyback_tokens_farming = {
 	'0xdac17f958d2ee523a2206206994597c13d831ec7': {
 		symbol: 'USDT', decimals: 6
 	},
-	'0x6b175474e89094c44da98b954eedeac495271d0f': {
-		symbol: 'DAI', decimals: 18
-	},
-	'0x514910771af9ca656af840dff83e8264ecf986ca': {
-		symbol: 'LINK', decimals: 18
-	},
-	'0xbd100d061e120b2c67a24453cf6368e63f1be056': {
-		symbol: 'iDYP', decimals: 18
-	}
+	// '0x6b175474e89094c44da98b954eedeac495271d0f': {
+	// 	symbol: 'DAI', decimals: 18
+	// },
+	// '0x514910771af9ca656af840dff83e8264ecf986ca': {
+	// 	symbol: 'LINK', decimals: 18
+	// },
+	// '0xbd100d061e120b2c67a24453cf6368e63f1be056': {
+	// 	symbol: 'iDYP', decimals: 18
+	// }
 }
 
 window.vaults = [

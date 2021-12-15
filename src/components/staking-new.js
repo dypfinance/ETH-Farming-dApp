@@ -201,6 +201,7 @@ export default function initStakingNew({token, staking, constant, liquidity, lp_
             let platformTokenAddress_25Percent = window.config.reward_token_address
 
             _75Percent = new BigNumber(_75Percent).div(2).toFixed(0)
+            //
 
             let _amountOutMin_baseTokenReceived = new BigNumber(_75Percent).times(100 - window.config.slippage_tolerance_percent).div(100).toFixed(0)
 
