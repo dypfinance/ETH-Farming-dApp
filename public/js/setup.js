@@ -196,7 +196,7 @@ window.config = {
 
 	/*buyback*/
 	buyback_staking_address: '0xe5262f38bf13410a79149cb40429f8dc5e830542',
-	slippage_tolerance_percent: 3, // 3% slippage tolerance
+	slippage_tolerance_percent: 1, // 3% slippage tolerance
 	tx_max_wait_seconds: 20 * 60, // 20 mins - deposit and withdraw tx will fail (swap will fail) after this duration of being pending
 	uniswap_router_address: '0x7a250d5630b4cf539739df2c5dacb4c659f2488d',
 

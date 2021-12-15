@@ -200,6 +200,10 @@ export default function initStakingNew({token, staking, constant, liquidity, lp_
             let platformTokenAddress = window.config.reward_token_idyp_address
             let platformTokenAddress_25Percent = window.config.reward_token_address
 
+            _75Percent = new BigNumber(_75Percent).div(2).toFixed(0)
+
+            let _amountOutMin_baseTokenReceived = new BigNumber(_75Percent).times(100 - window.config.slippage_tolerance_percent).div(100).toFixed(0)
+
             let path = [...new Set([selectedBuybackToken, WETH, platformTokenAddress].map(a => a.toLowerCase()))]
             let _amountOutMin_75Percent = await router.methods.getAmountsOut(_75Percent, path).call()
             _amountOutMin_75Percent = _amountOutMin_75Percent[_amountOutMin_75Percent.length - 1]
@@ -221,15 +225,27 @@ export default function initStakingNew({token, staking, constant, liquidity, lp_
                 // uint _amountOutMin_stakingReferralFee, // 1
                 // uint amountLiquidityMin_rewardTokenReceived, // 2
                 // uint amountLiquidityMin_baseTokenReceived, // 3
-                // uint _amountOutMin_rewardTokenReceived, // 4
-                // uint _amountOutMin_baseTokenReceived, // 5
+                // uint _amountOutMin_rewardTokenReceived, // 4 0xBD100d061E120b2c67A24453CF6368E63f1Be056;
+                // uint _amountOutMin_baseTokenReceived, // 5 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 WETH
                 // uint _amountOutMin_claimAsToken_dyp, // 6
                 // uint _amountOutMin_attemptSwap, // 7
                 uint _deadline
             */
-            let minAmounts = [0,0,0,0,0,0,0,0]
 
-            console.log({selectedBuybackToken ,amount, minAmounts, deadline})
+            /*
+            uint _rewardTokenReceived = doSwap(depositToken, trustedRewardTokenAddress, half, _amountOutMin_rewardTokenReceived minAmounts[4], _deadline);
+            uint _baseTokenReceived = doSwap(depositToken, trustedBaseTokenAddress, otherHalf, _amountOutMin_baseTokenReceived minAmounts[5], _deadline);
+
+            trustedRewardTokenAddress = 0xBD100d061E120b2c67A24453CF6368E63f1Be056; IDYP
+            trustedBaseTokenAddress = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2; WETH
+             */
+
+
+            let minAmounts = [_amountOutMin_25Percent,0,0,0,_amountOutMin_75Percent,_amountOutMin_baseTokenReceived,0,0]
+
+            console.log(minAmounts)
+
+            //console.log({selectedBuybackToken ,amount, minAmounts, deadline})
 
             staking.deposit(selectedBuybackToken ,amount, minAmounts, deadline)
 
