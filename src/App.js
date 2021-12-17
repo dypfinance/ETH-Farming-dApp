@@ -21,6 +21,9 @@ import StakingStatsNew from './components/staking-stats-new'
 import ReferralStats from './components/referral-stats'
 import FullStakingStats from './components/full-staking-stats'
 
+import initVesting from './components/vesting'
+import initVestingStaking from "./components/vesting-staking"
+
 import Header from './components/header'
 import Footer from './components/footer'
 
@@ -78,6 +81,11 @@ const StakingNew2 = initStakingNew({token: window.token_new, staking: window.far
 const StakingNew3 = initStakingNew({token: window.token_new, staking: window.farming_new_3, constant: window.constant_staking_new7, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022'})
 const StakingNew4 = initStakingNew({token: window.token_new, staking: window.farming_new_4, constant: window.constant_staking_new8, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022'})
 const StakingNew5 = initStakingNew({token: window.token_new, staking: window.farming_new_5, constant: window.constant_staking_new9, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022'})
+
+//Vesting & staking 3 months
+const eth_address2 = 'ETH'
+const Vesting = initVesting({ staking: window.constant_staking_200, buyers: true, apr: 0, liquidity: eth_address2, expiration_time: '16 February 2022' })
+const VestingStaking = initVestingStaking({ staking: window.constant_staking_300, apr: 0, liquidity: eth_address2, expiration_time: '16 February 2022' })
 
 const Modal = ({ handleClose, show, children }) => {
     const showHideClassName = show ? "modal display-block" : "modal display-none";
@@ -380,6 +388,9 @@ class App extends React.Component {
                       name: "Constant Staking 120"
                     }
                   ]} the_graph_result={this.state.the_graph_result} {...props} />} />
+
+              <Route exact path='/vst-private' render={props => <Vesting the_graph_result={this.state.the_graph_result} referrer={this.state.referrer} {...props} />} />
+              <Route exact path='/vst-private-staking' render={props => <VestingStaking the_graph_result={this.state.the_graph_result} referrer={this.state.referrer} {...props} />} />
 
 
               {/*Constant Staking New*/}
