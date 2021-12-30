@@ -186,6 +186,7 @@ export default function initStaking({ staking, apr, liquidity='ETH', lock, expir
         refreshBalance = async () => {
             let coinbase = window.coinbase_address
             this.setState({ coinbase })
+            console.log(true)
             try {
                 let _bal = reward_token.balanceOf(coinbase)
                 let _pDivs = staking.getTotalPendingDivs(coinbase)
