@@ -615,7 +615,7 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                                             number: '$'+tvl_usd
                                         },
                                         {
-                                            title: `APY`,
+                                            title: `APR`,
                                             number: getFormattedNumber(this.state.apy, 2)+'%'
                                         }
                                     ]} />
