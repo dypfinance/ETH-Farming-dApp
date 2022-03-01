@@ -194,6 +194,10 @@ window.config = {
 	constant_stakingold_90_address: '0x0A32749D95217b7Ee50127E24711c97849b70C6a',
 	constant_stakingold_120_address: '0x82df1450eFD6b504EE069F5e4548F2D5Cb229880',
 
+	// Constant staking iDYP
+	constant_stakingold_130_address: '0x9ea966b4023049bff858bb5e698ecff24ea54c4a',
+	constant_stakingold_140_address: '0x3fab09acaeddaf579d7a72c24ef3e9eb1d2975c4',
+
 	/*buyback*/
 	buyback_staking_address: '0xe5262f38bf13410a79149cb40429f8dc5e830542',
 	slippage_tolerance_percent: 1, // 3% slippage tolerance
@@ -4648,7 +4652,8 @@ class CONSTANT_STAKING_OLD {
 		[
 			"stake",
 			"unstake",
-			"claim"
+			"claim",
+			"reInvest"
 		].forEach(fn_name => {
 			this[fn_name] = async function (...args) {
 				let contract = await getContract(this.ticker)
@@ -4921,6 +4926,10 @@ window.constant_staking_new9 = new CONSTANT_STAKING_NEW("CONSTANT_STAKINGNEW_NEW
 /* VST */
 window.constant_staking_200 = new CONSTANT_STAKING("CONSTANT_STAKING_200")
 window.constant_staking_300 = new CONSTANT_STAKING("CONSTANT_STAKING_300")
+
+/* Constant staking iDYP */
+window.constant_staking_idyp_1 = new CONSTANT_STAKING_OLD("CONSTANT_STAKINGOLD_130")
+window.constant_staking_idyp_2 = new CONSTANT_STAKING_OLD("CONSTANT_STAKINGOLD_140")
 
 
 /**
