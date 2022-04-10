@@ -242,8 +242,10 @@ window.config = {
 	claim_as_eth_address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
 	claim_as_usdt_address: '0xdac17f958d2ee523a2206206994597c13d831ec7',
 
-	constant_staking_200_address: '0x246362D6d6E43E48eAD61dD7E7C13cfD55Ca8626',
-	constant_staking_300_address: '0x9C7bFADF949f49e13e454eb0232380135D47151a',
+	constant_staking_200_address: '0x45152e167cc2ebd4011138f646dc80eec9c8582e',
+	constant_staking_300_address: '0x45152e167cc2ebd4011138f646dc80eec9c8582e',
+
+	reward_token_dyps_address: '0xd4f11Bf85D751F426EF59b705E42b3da3357250f'
 }
 
 // add buyback supported deposit tokens here, lowercase
@@ -260,7 +262,7 @@ window.buyback_tokens = {
 	},
 	'0xdac17f958d2ee523a2206206994597c13d831ec7': {
 		symbol: 'USDT', decimals: 6
-	},
+	}
 	// '0x6b175474e89094c44da98b954eedeac495271d0f': {
 	// 	symbol: 'DAI', decimals: 18
 	// },
@@ -4895,6 +4897,9 @@ window.buyback_staking = new BUYBACK_STAKING('BUYBACK_STAKING')
 
 window.REWARD_TOKEN_IDYP_ABI = window.TOKEN_ABI
 window.reward_token_idyp = new TOKEN("REWARD_TOKEN_IDYP")
+
+window.REWARD_TOKEN_DYPS_ABI = window.TOKEN_ABI
+window.token_dyps = new TOKEN("REWARD_TOKEN_DYPS")
 
 //constant staking NEW CONTRACTS
 window.constant_staking_new1 = new CONSTANT_STAKING_NEW("CONSTANT_STAKINGNEW_NEW1")

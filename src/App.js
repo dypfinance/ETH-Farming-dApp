@@ -371,7 +371,8 @@ class App extends React.Component {
               <Route exact path="/staking-usdt-60" render={props => <StakingUsdt60 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdt[2]} {...props} />} />
               <Route exact path="/staking-usdt-90" render={props => <StakingUsdt90 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdt[3]} {...props} />} />
               {/* <Route exact path="/staking-dai" render={props => <StakingDAI {...props} />} /> */}
-              <Route exact path='/' render={props => <StakingList tvl_all={getFormattedNumber(this.getCombinedTvlUsd(), 2)} tvl_farming={getFormattedNumber(this.getTvlFarming(), 2)} {...props} />} />
+              {/*<Route exact path='/' render={props => <StakingList tvl_all={getFormattedNumber(this.getCombinedTvlUsd(), 2)} tvl_farming={getFormattedNumber(this.getTvlFarming(), 2)} {...props} />} />*/}
+              <Route exact path='/' render={props => <StakingNew5 the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[4]} {...props} />} />
               <Route path='/governance' render={props => <Governance {...props} />} />
 
               <Route exact path='/constant-staking-30' render={props => <ConstantStaking30 the_graph_result={this.state.the_graph_result} referrer={this.state.referrer} {...props} />} />

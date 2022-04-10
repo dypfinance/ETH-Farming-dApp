@@ -9,7 +9,7 @@ import Boxes from './boxes'
 
 export default function initConstantStakingNew({ staking, apr, liquidity='ETH', lock, expiration_time }) {
 
-    let { reward_token, BigNumber, alertify, reward_token_idyp } = window
+    let { reward_token, BigNumber, alertify, reward_token_idyp, token_dyps } = window
     let token_symbol = 'DYP'
 
     // token, staking
@@ -263,6 +263,7 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
             let { the_graph_result } = this.props
             let usd_per_token = the_graph_result.token_data ? the_graph_result.token_data["0x961c8c0b1aad0c0b10a51fef6a867e3091bcef17"].token_price_usd : 1
             let usd_per_idyp = the_graph_result.token_data ? the_graph_result.token_data["0xbd100d061e120b2c67a24453cf6368e63f1be056"].token_price_usd : 1
+            let usd_per_dyps = the_graph_result.price_DYPS ? the_graph_result.price_DYPS : 1
             let apy = new BigNumber(apr).div(1e2).times(usd_per_idyp).div(usd_per_token).times(1e2).toFixed(2)
 
             this.setState({apy})
@@ -291,16 +292,20 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                 //Take iDYP Balance on Staking
                 let _tvlConstantiDYP = reward_token_idyp.balanceOf(staking._address) /* TVL of iDYP on Staking */
 
+                //Take DYPS Balance
+                let _tvlDYPS = token_dyps.balanceOf(staking._address) /* TVL of DYPS */
+
                 let [token_balance, pendingDivs, totalEarnedTokens, stakingTime,
                     depositedTokens, lastClaimedTime, tvl,
-                    referralFeeEarned, total_stakers, tvlConstantiDYP
-                ] = await Promise.all([_bal, _pDivs, _tEarned, _stakingTime, _dTokens, _lClaimTime, _tvl, _rFeeEarned, tStakers, _tvlConstantiDYP])
+                    referralFeeEarned, total_stakers, tvlConstantiDYP, tvlDYPS
+                ] = await Promise.all([_bal, _pDivs, _tEarned, _stakingTime, _dTokens, _lClaimTime, _tvl, _rFeeEarned, tStakers, _tvlConstantiDYP, _tvlDYPS])
 
                 //console.log({tvl, tvlConstantiDYP, _amountOutMin})
 
                 let usdValueiDYP = new BigNumber(tvlConstantiDYP).times(_amountOutMin).toFixed(18)
+                let usdValueDYPS = new BigNumber(tvlDYPS).times(usd_per_dyps).toFixed(18)
                 let usd_per_lp = lp_data ? lp_data[window.reward_token["_address"]].token_price_usd : 0
-                let tvlUSD = new BigNumber(tvl).times(usd_per_lp).plus(usdValueiDYP).toFixed(18)
+                let tvlUSD = new BigNumber(tvl).times(usd_per_lp).plus(usdValueiDYP).plus(usdValueDYPS).toFixed(18)
                 //console.log({tvlUSD})
 
                 this.setState({
@@ -630,12 +635,12 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                                                         <Address style={{ fontFamily: 'monospace' }} a={coinbase} />
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <th>Contract Address</th>
-                                                    <td className='text-right'>
-                                                        <Address style={{ fontFamily: 'monospace' }} a={staking._address} />
-                                                    </td>
-                                                </tr>
+                                                {/*<tr>*/}
+                                                {/*    <th>Contract Address</th>*/}
+                                                {/*    <td className='text-right'>*/}
+                                                {/*        <Address style={{ fontFamily: 'monospace' }} a={staking._address} />*/}
+                                                {/*    </td>*/}
+                                                {/*</tr>*/}
 
                                                 <tr>
                                                     <th>Contract Expiration</th>
