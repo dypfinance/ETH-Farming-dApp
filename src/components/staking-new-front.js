@@ -746,21 +746,24 @@ export default function initStakingNew({token, staking, constant, liquidity, lp_
                 is_connected = true
             }
 
+            //console.log(total_stakers)
+
+            let isOwner = String(this.state.coinbase).toLowerCase() === String(window.config.admin_address).toLowerCase()
+
+            let apr2 = 50
+
+            let apy2 = new BigNumber(apr2).div(1e2).times(usd_per_idyp).div(usd_per_token).times(1e2).toFixed(2)
             let infoItems = [
-                "75% from your deposit is added to PancakeSwap V2 BNB/iDYP LP",
-                "25% from your deposit is sent to DYP Staking with % APR"
+                "75% from your deposit is added to Uniswap V2 ETH/iDYP LP",
+                "25% from your deposit is sent to DYP Staking with "+ apy2 +"% APR"
             ]
             let tooltip1 = infoItems.join('\n')
 
             let infoItems2 = [
-                "75% WBNB/ETH rewards",
+                "75% WETH/ETH rewards",
                 "25% DYP rewards"
             ]
             let tooltip2 = infoItems2.join('\n')
-
-            //console.log(total_stakers)
-
-            let isOwner = String(this.state.coinbase).toLowerCase() === String(window.config.admin_address).toLowerCase()
 
 
             return (<div>
@@ -771,32 +774,32 @@ export default function initStakingNew({token, staking, constant, liquidity, lp_
                             <div className="container">
                                 <Popup show={this.state.popup} handleClose={this.hidePopup} >
                                     <div className="earn-hero-content p4token-wrapper">
-                                        <p className='h3'><b>Maximize your Yield Farming Rewards</b></p>
                                         <p>Automatically adds liquidity to
                                             <Tooltip placement="top" title={<div style={{ whiteSpace: 'pre-line' }}>{tooltip1}</div>}>
                                                 <Button style={{fontSize: '70%', textDecoration: 'underline', color:  'var(--color_white)'}}>
-                                                    PancakeSwap V2 & deposit to Staking </Button>
+                                                    Uniswap V2 & deposit to Staking </Button>
                                             </Tooltip>
                                             contract using one asset. To start earning, all you need is to deposit
-                                            one of the supported assets (WBNB, BTCB, ETH, BUSD, CAKE, or iDYP) and earn
+                                            one of the supported assets (WETH, WBTC, USDC, or USDT) and earn
                                             <Tooltip placement="top" title={<div style={{ whiteSpace: 'pre-line' }}>{tooltip2}</div>}>
                                                 <Button style={{fontSize: '70%', textDecoration: 'underline', color:  'var(--color_white)', padding: '4px 0px 2px 5px'}}>
-                                                    WBNB/ETH/DYP as rewards.</Button>
+                                                    WETH/USDT/DYP as rewards.</Button>
                                             </Tooltip>
                                         </p>
-                                        <p>All pool rewards are automatically converted from iDYP to WBNB by the
+                                        {/*{this.state.ApyStake}*/}
+                                        <p>All pool rewards are automatically converted from iDYP to WETH by the
                                             smart contract, decreasing the risk of iDYP price volatility.
                                             <Tooltip placement="top" title={<div style={{ whiteSpace: 'pre-line' }}>{tooltip2}</div>}>
                                                 <Button style={{fontSize: '70%', textDecoration: 'underline', color:  'var(--color_white)'}}>
-                                                    WBNB/ETH + DYP </Button>
+                                                    WETH/USDT + DYP </Button>
                                             </Tooltip>
                                             is a double reward to the liquidity providers. The users can
-                                            choose between two different types of rewards: WBNB or ETH. Maintaining
+                                            choose between two different types of rewards: WETH or USDT. Maintaining
                                             token price stability — every 24 hours, the smart contract will
-                                            automatically try converting the iDYP rewards to WBNB. If the iDYP
+                                            automatically try converting the iDYP rewards to WETH. If the iDYP
                                             price is affected by more than
                                             <img src='/img/arrow.svg' alt="images not found" />2.5%, then the
-                                            maximum iDYP amount not influencing the price will be swapped to WBNB,
+                                            maximum iDYP amount not influencing the price will be swapped to WETH,
                                             with the remaining amount distributed in the next day’s rewards. After
                                             seven days, if we still have undistributed iDYP rewards, the DeFi Yield
                                             Protocol governance will vote on whether the remaining iDYP will be
@@ -823,7 +826,7 @@ export default function initStakingNew({token, staking, constant, liquidity, lp_
                                                 </button>
                                             </div>
                                             <div style={{paddingLeft: '20px'}} className='col-6'>
-                                                <button className onClick={()=> window.open("https://www.youtube.com/watch?v=2pOUmRTMN1o", "_blank")}
+                                                <button className onClick={()=> window.open("https://www.youtube.com/watch?v=xc2S9Jei7DA", "_blank")}
                                                         className='btn  btn-block btn-primary l-outline-btn button'
                                                         type='submit'>
                                                     <img src="img/icon/video.svg" style={{float: 'left'}}
