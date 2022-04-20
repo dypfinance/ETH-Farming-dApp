@@ -5,9 +5,12 @@ import { Route } from 'react-router-dom'
 import initStaking from './components/staking'
 import initConstantStaking from './components/constant-staking'
 import initBuybackStaking from './components/buy-back-staking'
-import initConstantStakingNew from "./components/constant-staking-new"
-import initBuybackStakingNew from './components/buy-back-staking-new'
-import initStakingNew from "./components/staking-new"
+// import initConstantStakingNew from "./components/constant-staking-new"
+import initConstantStakingNew from "./components/constant-staking-new-front"
+// import initBuybackStakingNew from './components/buy-back-staking-new'
+import initBuybackStakingNew from './components/buy-back-staking-new-front'
+// import initStakingNew from "./components/staking-new"
+import initStakingNew from "./components/staking-new-front"
 import StakingList from './components/staking-list'
 import ConstantStakingList from './components/constant-staking-list'
 import StakingListEth from './components/staking-list-eth.js'
@@ -27,11 +30,15 @@ import initVestingStaking from "./components/vesting-staking"
 import Header from './components/header'
 import Footer from './components/footer'
 
+import Modal from "./components/modal";
+
 import getFormattedNumber from './functions/get-formatted-number';
 
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
-import initConstantStakingiDYP from './components/constant-staking-idyp'
+// import initConstantStakingiDYP from './components/constant-staking-idyp'
+
+import initConstantStakingiDYP from './components/constant-staking-idyp-new-front'
 
 const eth_address = 'ETH'
 const wbtc_address = '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599'
@@ -93,24 +100,6 @@ const VestingStaking = initVestingStaking({ staking: window.constant_staking_300
 const ConstantStakingiDYP1 = initConstantStakingiDYP({ staking: window.constant_staking_idyp_1, apr: 20, liquidity: eth_address, expiration_time: '28 February 2023' })
 const ConstantStakingiDYP2 = initConstantStakingiDYP({ staking: window.constant_staking_idyp_2, apr: 45, liquidity: eth_address, expiration_time: '28 February 2023' })
 
-
-const Modal = ({ handleClose, show, children }) => {
-    const showHideClassName = show ? "modal display-block" : "modal display-none";
-
-    return (
-        <div className={showHideClassName} onClick={() => {
-            // close modal when outside of modal is clicked
-            handleClose()
-        }}>
-            <section className="modal-main">
-                {children}
-                {/*<button type="button" onClick={handleClose}>*/}
-                {/*    Close*/}
-                {/*</button>*/}
-            </section>
-        </div>
-    )
-}
 
 let { BigNumber, LP_IDs, LP_IDs_V2 } = window
 
@@ -257,131 +246,46 @@ class App extends React.Component {
 
     render() {
 
-        if (!this.state.is_wallet_connected) {
-            return (<div className='App text-center'>
-                <Header darkTheme={this.state.darkTheme} toggleTheme={this.toggleTheme} />
-                <div className='container App-container'>
-                    <div className='mt-5'>
-                        <h3 className='mb-4'>Please connect wallet to use this dApp</h3>
-                        <Modal show={this.state.show} handleClose={this.hideModal}>
-                            <div className="sc-frDJqD ljXtWJ" data-reach-dialog-content="">
-                                <div className="sc-cmTdod kjSopy">
-                                    <div className="sc-lhVmIH xuOEC">
-                                        <div className="sc-feJyhm iTaYul">
-                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                 stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-                                                 strokeLinejoin="round" className="sc-iELTvK cvCpgS">
-                                                <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                <line x1="6" y1="6" x2="18" y2="18"></line>
-                                            </svg>
-                                        </div>
-                                        <div className="sc-jwKygS bFQpTL">
-                                            <div className="sc-jtRfpW iudQQC">Connect to a wallet</div>
-                                        </div>
-                                        <div className="sc-btzYZH cRGnnt">
-                                            <div className="sc-elJkPf kIebhI">
-                                                <button onClick={this.handleConnection} id="connect-METAMASK"
-                                                        className="sc-kvZOFW sc-hqyNC sc-dNLxif fJOgmn">
-                                                    <div className="sc-jbKcbu GeCum">
-                                                        <div color="#E8831D" className="sc-bbmXgH eDNUCi">MetaMask</div>
-                                                    </div>
-                                                    <div className="sc-jnlKLf gJPfsC">
-                                                        <img src="/img/wallets/metamask.svg" alt="Icon" />
-                                                    </div>
-                                                </button>
-                                                <button onClick={this.handleConnectionWalletConnect} id="connect-WALLETCONNECT"
-                                                        className="sc-kvZOFW sc-hqyNC sc-dNLxif fJOgmn">
-                                                    <div className="sc-jbKcbu GeCum">
-                                                        <div color="#E8831D" className="sc-bbmXgH eDNUCi">WalletConnect</div>
-                                                    </div>
-                                                    <div className="sc-jnlKLf gJPfsC">
-                                                        <img src="/img/wallets/walletConnect.svg" height={'25px'} alt="Icon" />
-                                                    </div>
-                                                </button>
-                                                <button onClick={this.handleConnection} id="connect-COIN98" className="sc-kvZOFW sc-hqyNC sc-dNLxif fJOgmn">
-                                                    <div className="sc-jbKcbu GeCum">
-                                                        <div color="#E8831D" className="sc-bbmXgH eDNUCi">Coin98</div>
-                                                    </div>
-                                                    <div className="sc-jnlKLf gJPfsC">
-                                                        <img src="/img/wallets/coin98.svg" alt="Icon" />
-                                                    </div>
-                                                </button>
-                                                <button onClick={this.handleConnection} id="connect-COIN98" className="sc-kvZOFW sc-hqyNC sc-dNLxif fJOgmn">
-                                                    <div className="sc-jbKcbu GeCum">
-                                                        <div color="#E8831D" className="sc-bbmXgH eDNUCi">Trust Wallet</div>
-                                                    </div>
-                                                    <div className="sc-jnlKLf gJPfsC">
-                                                        <img src="/img/wallets/trustwallet.svg" alt="Icon" />
-                                                    </div>
-                                                </button>
-                                                <button onClick={this.handleConnection} id="connect-COIN98" className="sc-kvZOFW sc-hqyNC sc-dNLxif fJOgmn">
-                                                    <div className="sc-jbKcbu GeCum">
-                                                        <div color="#E8831D" className="sc-bbmXgH eDNUCi">SafePal</div>
-                                                    </div>
-                                                    <div className="sc-jnlKLf gJPfsC">
-                                                        <img src="/img/wallets/safepal.svg" alt="Icon" />
-                                                    </div>
-                                                </button>
-                                            </div>
-                                            {/*<div className="sc-bYSBpT cqlMyA"><span>New to Avalanche? &nbsp;</span> <a*/}
-                                            {/*    target="_blank" rel="noopener noreferrer"*/}
-                                            {/*    href="https://pangolin.exchange/tutorials/getting-started/#set-up-metamask"*/}
-                                            {/*    className="sc-ifAKCX jNdpwd sc-kTUwUJ kLByLx">Learn more about setting up a*/}
-                                            {/*    wallet</a></div>*/}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Modal>
-                        <button onClick={this.showModal} style={{borderRadius: '6px'}} className='btn btn-primary pr-5 pl-5'>
-                            CONNECT WALLET</button>
-                        {/*<button onClick={this.handleConnection} style={{borderRadius: '6px'}} className='btn btn-primary pr-5 pl-5'>*/}
-                        {/*    CONNECT WALLET</button>*/}
-                    </div>
-                </div>
-                <Footer />
-            </div>);
-        }
-
       return (
         <div className="App App-header">
           <Header darkTheme={this.state.darkTheme} toggleTheme={this.toggleTheme} />
-          <div style={{minHeight: '550px'}} className='App-container'>
-              <Route exact path="/staking-stats" render={props => <StakingStats the_graph_result={this.state.the_graph_result} {...props} />} />
-              <Route exact path="/full-staking-stats" render={props => <FullStakingStats the_graph_result={this.state.the_graph_result} {...props} />} />
 
-              <Route exact path="/staking-eth" render={props => <StakingListEth the_graph_result={this.state.the_graph_result} lp_id={[LP_IDs.eth[0], LP_IDs.eth[1], LP_IDs.eth[2], LP_IDs.eth[3]]} {...props} />} />
-              <Route exact path="/staking-eth-3" render={props => <Staking3 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.eth[0]} {...props} />} />
-              <Route exact path="/staking-eth-30" render={props => <Staking30 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.eth[1]} {...props} />} />
-              <Route exact path="/staking-eth-60" render={props => <Staking60 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.eth[2]} {...props} />} />
-              <Route exact path="/staking-eth-90" render={props => <Staking90 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.eth[3]} {...props} />} />
-              <Route exact path="/staking-wbtc" render={props => <StakingListWbtc the_graph_result={this.state.the_graph_result} lp_id={[LP_IDs.wbtc[0], LP_IDs.wbtc[1], LP_IDs.wbtc[2], LP_IDs.wbtc[3]]} {...props} />} />
-              <Route exact path="/staking-wbtc-3" render={props => <StakingWbtc3 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.wbtc[0]} {...props} />} />
-              <Route exact path="/staking-wbtc-30" render={props => <StakingWbtc30 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.wbtc[1]} {...props} />} />
-              <Route exact path="/staking-wbtc-60" render={props => <StakingWbtc60 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.wbtc[2]} {...props} />} />
-              <Route exact path="/staking-wbtc-90" render={props => <StakingWbtc90 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.wbtc[3]} {...props} />} />
-              <Route exact path="/staking-usdc" render={props => <StakingListUsdc the_graph_result={this.state.the_graph_result} lp_id={[LP_IDs.usdc[0], LP_IDs.usdc[1], LP_IDs.usdc[2], LP_IDs.usdc[3]]} {...props} />} />
-              <Route exact path="/staking-usdc-3" render={props => <StakingUsdc3 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdc[0]} {...props} />} />
-              <Route exact path="/staking-usdc-30" render={props => <StakingUsdc30 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdc[1]} {...props} />} />
-              <Route exact path="/staking-usdc-60" render={props => <StakingUsdc60 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdc[2]} {...props} />} />
-              <Route exact path="/staking-usdc-90" render={props => <StakingUsdc90 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdc[3]} {...props} />} />
-              <Route exact path="/staking-usdt" render={props => <StakingListUsdt the_graph_result={this.state.the_graph_result} lp_id={[LP_IDs.usdt[0], LP_IDs.usdt[1], LP_IDs.usdt[2], LP_IDs.usdt[3]]} {...props} />} />
-              <Route exact path="/staking-usdt-3" render={props => <StakingUsdt3 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdt[0]} {...props} />} />
-              <Route exact path="/staking-usdt-30" render={props => <StakingUsdt30 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdt[1]} {...props} />} />
-              <Route exact path="/staking-usdt-60" render={props => <StakingUsdt60 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdt[2]} {...props} />} />
-              <Route exact path="/staking-usdt-90" render={props => <StakingUsdt90 the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdt[3]} {...props} />} />
+          <div style={{minHeight: '550px'}} className='App-container'>
+              <Route exact path="/staking-stats" render={props => <StakingStats is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} {...props} />} />
+              <Route exact path="/full-staking-stats" render={props => <FullStakingStats is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} {...props} />} />
+
+              <Route exact path="/staking-eth" render={props => <StakingListEth is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={[LP_IDs.eth[0], LP_IDs.eth[1], LP_IDs.eth[2], LP_IDs.eth[3]]} {...props} />} />
+              <Route exact path="/staking-eth-3" render={props => <Staking3 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.eth[0]} {...props} />} />
+              <Route exact path="/staking-eth-30" render={props => <Staking30 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.eth[1]} {...props} />} />
+              <Route exact path="/staking-eth-60" render={props => <Staking60 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.eth[2]} {...props} />} />
+              <Route exact path="/staking-eth-90" render={props => <Staking90 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.eth[3]} {...props} />} />
+              <Route exact path="/staking-wbtc" render={props => <StakingListWbtc is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={[LP_IDs.wbtc[0], LP_IDs.wbtc[1], LP_IDs.wbtc[2], LP_IDs.wbtc[3]]} {...props} />} />
+              <Route exact path="/staking-wbtc-3" render={props => <StakingWbtc3 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.wbtc[0]} {...props} />} />
+              <Route exact path="/staking-wbtc-30" render={props => <StakingWbtc30 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.wbtc[1]} {...props} />} />
+              <Route exact path="/staking-wbtc-60" render={props => <StakingWbtc60 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.wbtc[2]} {...props} />} />
+              <Route exact path="/staking-wbtc-90" render={props => <StakingWbtc90 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.wbtc[3]} {...props} />} />
+              <Route exact path="/staking-usdc" render={props => <StakingListUsdc is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={[LP_IDs.usdc[0], LP_IDs.usdc[1], LP_IDs.usdc[2], LP_IDs.usdc[3]]} {...props} />} />
+              <Route exact path="/staking-usdc-3" render={props => <StakingUsdc3 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdc[0]} {...props} />} />
+              <Route exact path="/staking-usdc-30" render={props => <StakingUsdc30 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdc[1]} {...props} />} />
+              <Route exact path="/staking-usdc-60" render={props => <StakingUsdc60 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdc[2]} {...props} />} />
+              <Route exact path="/staking-usdc-90" render={props => <StakingUsdc90 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdc[3]} {...props} />} />
+              <Route exact path="/staking-usdt" render={props => <StakingListUsdt is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={[LP_IDs.usdt[0], LP_IDs.usdt[1], LP_IDs.usdt[2], LP_IDs.usdt[3]]} {...props} />} />
+              <Route exact path="/staking-usdt-3" render={props => <StakingUsdt3 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdt[0]} {...props} />} />
+              <Route exact path="/staking-usdt-30" render={props => <StakingUsdt30 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdt[1]} {...props} />} />
+              <Route exact path="/staking-usdt-60" render={props => <StakingUsdt60 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdt[2]} {...props} />} />
+              <Route exact path="/staking-usdt-90" render={props => <StakingUsdt90 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} lp_id={LP_IDs.usdt[3]} {...props} />} />
               {/* <Route exact path="/staking-dai" render={props => <StakingDAI {...props} />} /> */}
               {/*<Route exact path='/' render={props => <StakingList tvl_all={getFormattedNumber(this.getCombinedTvlUsd(), 2)} tvl_farming={getFormattedNumber(this.getTvlFarming(), 2)} {...props} />} />*/}
-              <Route exact path='/' render={props => <StakingNew5 the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[4]} {...props} />} />
+              <Route exact path='/' render={props => <StakingNew5 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[4]} {...props} />} />
               <Route path='/governance' render={props => <Governance {...props} />} />
 
-              <Route exact path='/constant-staking-30' render={props => <ConstantStaking30 the_graph_result={this.state.the_graph_result} referrer={this.state.referrer} {...props} />} />
-              <Route exact path='/constant-staking-60' render={props => <ConstantStaking60 the_graph_result={this.state.the_graph_result} referrer={this.state.referrer} {...props} />} />
-              <Route exact path='/constant-staking-90' render={props => <ConstantStaking90 the_graph_result={this.state.the_graph_result} referrer={this.state.referrer} {...props} />} />
-              <Route exact path='/constant-staking-120' render={props => <ConstantStaking120 the_graph_result={this.state.the_graph_result} referrer={this.state.referrer} {...props} />} />
-              <Route exact path="/constant-staking" render={props => <ConstantStakingList the_graph_result={this.state.the_graph_result} {...props} />} />
-              <Route exact path='/staking-buyback' render={props => <BuybackStaking the_graph_result={this.state.the_graph_result} {...props} />} />
-              <Route exact path='/referral-stats' render={props => <ReferralStats staking_list={
+              <Route exact path='/constant-staking-30' render={props => <ConstantStaking30 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} referrer={this.state.referrer} {...props} />} />
+              <Route exact path='/constant-staking-60' render={props => <ConstantStaking60 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} referrer={this.state.referrer} {...props} />} />
+              <Route exact path='/constant-staking-90' render={props => <ConstantStaking90 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} referrer={this.state.referrer} {...props} />} />
+              <Route exact path='/constant-staking-120' render={props => <ConstantStaking120 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} referrer={this.state.referrer} {...props} />} />
+              <Route exact path="/constant-staking" render={props => <ConstantStakingList is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} {...props} />} />
+              <Route exact path='/staking-buyback' render={props => <BuybackStaking is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} {...props} />} />
+              <Route exact path='/referral-stats' render={props => <ReferralStats is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} staking_list={
                   [{
                       staking: window.constant_staking_30,
                       name: "Constant Staking 30"
@@ -397,29 +301,29 @@ class App extends React.Component {
                     }
                   ]} the_graph_result={this.state.the_graph_result} {...props} />} />
 
-              <Route exact path='/vst-private' render={props => <Vesting the_graph_result={this.state.the_graph_result} referrer={this.state.referrer} {...props} />} />
-              <Route exact path='/vst-private-staking' render={props => <VestingStaking the_graph_result={this.state.the_graph_result} referrer={this.state.referrer} {...props} />} />
+              <Route exact path='/vst-private' render={props => <Vesting is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} referrer={this.state.referrer} {...props} />} />
+              {/*<Route exact path='/vst-private-staking' render={props => <VestingStakin is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result} referrer={this.state.referrer} {...props} />} />*/}
 
 
               {/*Constant Staking New*/}
-              <Route exact path='/constant-staking-1' render={props => <ConstantStaking1 the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
-              <Route exact path='/constant-staking-2' render={props => <ConstantStaking2 the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
+              <Route exact path='/constant-staking-1' render={props => <ConstantStaking1 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
+              <Route exact path='/constant-staking-2' render={props => <ConstantStaking2 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
 
               {/*Buyback New*/}
-              <Route exact path='/staking-buyback-1' render={props => <BuybackStaking1 the_graph_result={this.state.the_graph_result_ETH_V2} {...props} />} />
-              <Route exact path='/staking-buyback-2' render={props => <BuybackStaking2 the_graph_result={this.state.the_graph_result_ETH_V2} {...props} />} />
+              <Route exact path='/staking-buyback-1' render={props => <BuybackStaking1 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} {...props} />} />
+              <Route exact path='/staking-buyback-2' render={props => <BuybackStaking2 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} {...props} />} />
 
               {/*Farming New*/}
-              <Route exact path='/farming-new-1' render={props => <StakingNew1 the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[0]} {...props} />} />
-              <Route exact path='/farming-new-2' render={props => <StakingNew2 the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[1]} {...props} />} />
-              <Route exact path='/farming-new-3' render={props => <StakingNew3 the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[2]} {...props} />} />
-              <Route exact path='/farming-new-4' render={props => <StakingNew4 the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[3]} {...props} />} />
-              <Route exact path='/farming-new-5' render={props => <StakingNew5 the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[4]} {...props} />} />
+              <Route exact path='/farming-new-1' render={props => <StakingNew1 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[0]} {...props} />} />
+              <Route exact path='/farming-new-2' render={props => <StakingNew2 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[1]} {...props} />} />
+              <Route exact path='/farming-new-3' render={props => <StakingNew3 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[2]} {...props} />} />
+              <Route exact path='/farming-new-4' render={props => <StakingNew4 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[3]} {...props} />} />
+              <Route exact path='/farming-new-5' render={props => <StakingNew5 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} lp_id={LP_IDs_V2.weth[4]} {...props} />} />
 
-              <Route exact path="/staking-stats-new" render={props => <StakingStatsNew the_graph_result={this.state.the_graph_result_ETH_V2} {...props} />} />
+              <Route exact path="/staking-stats-new" render={props => <StakingStatsNew is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} {...props} />} />
 
-              <Route exact path="/staking-idyp-1" render={props => <ConstantStakingiDYP1 the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
-              <Route exact path="/staking-idyp-2" render={props => <ConstantStakingiDYP2 the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
+              <Route exact path="/staking-idyp-1" render={props => <ConstantStakingiDYP1 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
+              <Route exact path="/staking-idyp-2" render={props => <ConstantStakingiDYP2 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
 
           </div>
 
