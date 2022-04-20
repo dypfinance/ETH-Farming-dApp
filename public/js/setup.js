@@ -4338,7 +4338,7 @@ async function getContract(key) {
     let ABI = window[key+'_ABI']
     let address = window.config[key.toLowerCase()+'_address']
     if (!window.cached_contracts[key]) {
-        window.cached_contracts[key] = new window.ethweb3.eth.Contract(ABI, address, {from: await getCoinbase()})
+        window.cached_contracts[key] = new window.web3.eth.Contract(ABI, address, {from: await getCoinbase()})
     }
 
     return window.cached_contracts[key]
@@ -4351,7 +4351,18 @@ function getCoinbase() {
 	// else{
 	// 	return window.web3.eth.getCoinbase()
 	// }
-	return window.coinbase_address
+
+	if(window.window.IS_CONNECTED)
+	{
+		window.coinbase_address
+	}
+	else
+	{
+		window.coinbase_address = '0x0000000000000000000000000000000000000111';
+	}
+
+
+	return '0x0000000000000000000000000000000000000111'
 }
 
 
@@ -5051,7 +5062,7 @@ async function get_number_of_stakers(staking_pools_list) {
 	}
 
 	return (await Promise.all(staking_pools_list.map(contract_address => {
-		let contract = new window.ethweb3.eth.Contract(window.STAKING_ABI, contract_address, {from: coinbase})
+		let contract = new window.web3.eth.Contract(window.STAKING_ABI, contract_address, {from: coinbase})
 		return contract.methods.getNumberOfHolders().call()
 	}))).map(h => Number(h))
 }
@@ -5072,7 +5083,7 @@ async function get_token_balances({
 		}
 	}
 
-	let token_contract = new window.ethweb3.eth.Contract(window.TOKEN_ABI, TOKEN_ADDRESS, {from: coinbase})
+	let token_contract = new window.web3.eth.Contract(window.TOKEN_ABI, TOKEN_ADDRESS, {from: coinbase})
 
 	return (await Promise.all(HOLDERS_LIST.map(h => {
 		return token_contract.methods.balanceOf(h).call()
@@ -5253,7 +5264,7 @@ window.get_the_graph_eth_v2 = get_the_graph_eth_v2
 
 /*buyback*/
 async function getTokenHolderBalance(token, holder) {
-	let tokenContract = new window.ethweb3.eth.Contract(window.TOKEN_ABI, token, {from: await getCoinbase()})
+	let tokenContract = new window.web3.eth.Contract(window.TOKEN_ABI, token, {from: await getCoinbase()})
 	return await tokenContract.methods.balanceOf(holder).call()
 }
 
@@ -5273,7 +5284,7 @@ async function getUniswapRouterContract(address=window.config.uniswap_router_add
 
 /* iDYP check Vesting/Staking */
 async function isStaking(holder, stakingAddress) {
-	let tokenContract = new window.ethweb3.eth.Contract(window.CONSTANT_STAKING_ABI, stakingAddress, {from: await getCoinbase()})
+	let tokenContract = new window.web3.eth.Contract(window.CONSTANT_STAKING_ABI, stakingAddress, {from: await getCoinbase()})
 	return await tokenContract.methods.depositedTokens(holder).call()
 }
 
