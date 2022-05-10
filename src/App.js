@@ -33,6 +33,8 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 
 import initConstantStakingiDYP from './components/constant-staking-idyp'
 
+import initConstantStakingDai from './components/constant-staking-dai'
+
 const eth_address = 'ETH'
 const wbtc_address = '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599'
 const usdc_address = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
@@ -72,6 +74,9 @@ const StakingUsdt90 = initStaking({token: window.token_usdt_90, staking: window.
 //Constant Staking New
 const ConstantStaking1 = initConstantStakingNew({ staking: window.constant_staking_new1, apr: 25, liquidity: eth_address, expiration_time: '14 December 2022' })
 const ConstantStaking2 = initConstantStakingNew({ staking: window.constant_staking_new2, apr: 50, liquidity: eth_address, expiration_time: '14 December 2022' })
+
+//Constant Staking NEW DYP -> DAI
+const ConstantStakingDai = initConstantStakingDai({ staking: window.constant_stakingdai, apr: 25, liquidity: eth_address, expiration_time: '10 May 2023' })
 
 //Buyback New
 const BuybackStaking1 = initBuybackStakingNew({ staking: window.buyback_staking1_1, constant: window.constant_staking_new3, apr: 30, expiration_time: '14 December 2022' })
@@ -404,6 +409,9 @@ class App extends React.Component {
               {/*Constant Staking New*/}
               <Route exact path='/constant-staking-1' render={props => <ConstantStaking1 the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
               <Route exact path='/constant-staking-2' render={props => <ConstantStaking2 the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
+
+              {/*Constant Staking DYP -> DAI*/}
+              <Route exact path='/constant-staking-3' render={props => <ConstantStakingDai the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
 
               {/*Buyback New*/}
               <Route exact path='/staking-buyback-1' render={props => <BuybackStaking1 the_graph_result={this.state.the_graph_result_ETH_V2} {...props} />} />
