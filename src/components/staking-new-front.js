@@ -774,6 +774,7 @@ export default function initStakingNew({token, staking, constant, liquidity, lp_
                             <div className="container">
                                 <Popup show={this.state.popup} handleClose={this.hidePopup} >
                                     <div className="earn-hero-content p4token-wrapper">
+                                        <p className='h3'><b>Maximize your Yield Farming Rewards</b></p>
                                         <p>Automatically adds liquidity to
                                             <Tooltip placement="top" title={<div style={{ whiteSpace: 'pre-line' }}>{tooltip1}</div>}>
                                                 <Button style={{fontSize: '70%', textDecoration: 'underline', color:  'var(--color_white)'}}>

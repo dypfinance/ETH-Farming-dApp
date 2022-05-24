@@ -430,7 +430,7 @@ export default function initStaking({ staking, apr, liquidity='ETH', lock, expir
                                 <Modal show={this.state.show} handleConnection={this.props.handleConnection} handleConnectionWalletConnect={this.props.handleConnectionWalletConnect} handleClose={this.hideModal} />
                                 <div className='row'>
                                     <div className='col-12' style={{marginBottom: '30px'}}>
-                                        <p style={{width: '100%', height: 'auto', fontFamily: 'Mulish', fontStyle: 'normal', fontWeight: '900', fontSize: '42px', lineHeight: '55px', color: '#FFFFFF', marginTop: '35px', maxHeight: '55px'}} >iDYP Pool</p>
+                                        <p style={{width: '100%', height: 'auto', fontFamily: 'Mulish', fontStyle: 'normal', fontWeight: '900', fontSize: '42px', lineHeight: '55px', color: '#FFFFFF', marginTop: '35px', maxHeight: '55px'}} >iDYP Staking</p>
                                     </div>
                                     <div className='col-6' style={{marginBottom: '27px'}}>
                                         <div className='row'>
@@ -439,7 +439,7 @@ export default function initStaking({ staking, apr, liquidity='ETH', lock, expir
                                                         className='btn  btn-block btn-primary button' type='button'>
                                                     <img src="img/icon/bulb.svg" style={{float: 'left'}}
                                                          alt="wallet" />
-                                                    Farming info
+                                                    More info
                                                 </button>
                                             </div>
                                             <div style={{paddingLeft: '20px'}} className='col-6'>

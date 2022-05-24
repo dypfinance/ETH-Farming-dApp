@@ -171,13 +171,13 @@ export default function initStaking({ staking, constant, apr, lock, expiration_t
             window._refreshBalInterval = setInterval(this.refreshBalance, 3000)
 
             this.getPriceDYP()
-
-            this.getTotalTvl().then()
         }
 
         getTotalTvl = async () => {
 
             let { the_graph_result } = this.props
+
+            // console.log(the_graph_result)
 
             let usd_per_token = the_graph_result.token_data ? the_graph_result.token_data["0x961c8c0b1aad0c0b10a51fef6a867e3091bcef17"].token_price_usd : 1
             let usd_per_idyp = the_graph_result.token_data ? the_graph_result.token_data["0xbd100d061e120b2c67a24453cf6368e63f1be056"].token_price_usd : 1
@@ -383,6 +383,8 @@ export default function initStaking({ staking, constant, apr, lock, expiration_t
         refreshBalance = async () => {
             let coinbase = window.coinbase_address
             this.setState({ coinbase })
+
+            this.getTotalTvl()
 
             let { the_graph_result } = this.props
             let usd_per_dyps = the_graph_result.price_DYPS ? the_graph_result.price_DYPS : 1
@@ -636,7 +638,7 @@ export default function initStaking({ staking, constant, apr, lock, expiration_t
                                 <Modal show={this.state.show} handleConnection={this.props.handleConnection} handleConnectionWalletConnect={this.props.handleConnectionWalletConnect} handleClose={this.hideModal} />
                                 <div className='row'>
                                     <div className='col-12' style={{marginBottom: '30px'}}>
-                                        <p style={{width: '100%', height: 'auto', fontFamily: 'Mulish', fontStyle: 'normal', fontWeight: '900', fontSize: '42px', lineHeight: '55px', color: '#FFFFFF', marginTop: '35px', maxHeight: '55px'}} >Buy Back Pool</p>
+                                        <p style={{width: '100%', height: 'auto', fontFamily: 'Mulish', fontStyle: 'normal', fontWeight: '900', fontSize: '42px', lineHeight: '55px', color: '#FFFFFF', marginTop: '35px', maxHeight: '55px'}} >DYP Buyback</p>
                                     </div>
                                     <div className='col-6' style={{marginBottom: '27px'}}>
                                         <div className='row'>
@@ -645,7 +647,7 @@ export default function initStaking({ staking, constant, apr, lock, expiration_t
                                                         className='btn  btn-block btn-primary button' type='button'>
                                                     <img src="img/icon/bulb.svg" style={{float: 'left'}}
                                                          alt="wallet" />
-                                                    Farming info
+                                                    More info
                                                 </button>
                                             </div>
                                             <div style={{paddingLeft: '20px'}} className='col-6'>

@@ -526,40 +526,23 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                             <div className="container">
                                 <Popup show={this.state.popup} handleClose={this.hidePopup} >
                                     <div className="earn-hero-content p4token-wrapper">
-                                        <p className='h3'><b>Earn more DYP</b></p>
-                                        <p>Stake your DYP tokens and earn {this.state.apy2 == 0 ? (
-                                            <Dots />
-                                        ) : (
-                                            getFormattedNumber(this.state.apy2,0)
-                                        )
-                                        }% APR. No Impermanent Loss.</p>
-                                        <p>To start earning, all you need is to deposit DYP tokens into the Staking
-                                            contract. You can choose from two different staking options, with
-                                            rewards starting from {this.state.apy1 == 0 ? (
-                                                <Dots />
-                                            ) : (
-                                                getFormattedNumber(this.state.apy1,0)
-                                            )
-                                            }% APR up to {this.state.apy2 == 0 ? (
-                                                <Dots />
-                                            ) : (
-                                                getFormattedNumber(this.state.apy2,0)
-                                            )
-                                            }% APR, depending on the lock time
-                                            from a minimum of zero-days up to a maximum of 90 days.</p>
-                                        <p>The staking pools have the REINVEST function integrated, meaning that
-                                            you can automatically add your daily rewards to the staking pool.
-                                            Moreover, the DYP Referral is available. If you refer DYP to your
-                                            friends, 5% of your friends’ rewards will automatically be sent to you
-                                            whenever your friends stake DYP. You do not need to stake, it will’ be
-                                            automatically sent to you, free of gas fee.</p>
+                                        <p className='h3'><b>DYP Staking</b></p>
+                                        <p>Stake your DYP tokens and earn 25% APR in ETH. No Impermanent Loss.</p>
+                                        <p>To start earning, all you need is to deposit DYP tokens into the
+                                            Staking contract and earn ETH as rewards.</p>
+                                        <p>The staking pools have the REINVEST function integrated, meaning
+                                            that you can automatically add your daily rewards to the staking
+                                            pool. Moreover, the DYP Referral is available. If you refer DYP
+                                            to your friends, 5% of your friends’ rewards will automatically
+                                            be sent to you whenever your friends stake DYP. You do not need
+                                            to stake, it will’ be automatically sent to you, free of gas fee.</p>
                                     </div>
 
                                 </Popup>
                                 <Modal show={this.state.show} handleConnection={this.props.handleConnection} handleConnectionWalletConnect={this.props.handleConnectionWalletConnect} handleClose={this.hideModal} />
                                 <div className='row'>
                                     <div className='col-12' style={{marginBottom: '30px'}}>
-                                        <p style={{width: '100%', height: 'auto', fontFamily: 'Mulish', fontStyle: 'normal', fontWeight: '900', fontSize: '42px', lineHeight: '55px', color: '#FFFFFF', marginTop: '35px', maxHeight: '55px'}} >Staking pool</p>
+                                        <p style={{width: '100%', height: 'auto', fontFamily: 'Mulish', fontStyle: 'normal', fontWeight: '900', fontSize: '42px', lineHeight: '55px', color: '#FFFFFF', marginTop: '35px', maxHeight: '55px'}} >DYP Staking</p>
                                     </div>
                                     <div className='col-6' style={{marginBottom: '27px'}}>
                                         <div className='row'>
@@ -568,7 +551,7 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                                                         className='btn  btn-block btn-primary button' type='button'>
                                                     <img src="img/icon/bulb.svg" style={{float: 'left'}}
                                                          alt="wallet" />
-                                                    Farming info
+                                                    More info
                                                 </button>
                                             </div>
                                             <div style={{paddingLeft: '20px'}} className='col-6'>
