@@ -4287,6 +4287,12 @@ async function getMaxFee(){
 	return {latestGasPrice, maxPriorityFeePerGas}
 }
 
+window.web3 = new Web3('https://mainnet.infura.io/v3/94608dc6ddba490697ec4f9b723b586e')
+
+window.ethweb3 = new Web3('https://mainnet.infura.io/v3/94608dc6ddba490697ec4f9b723b586e')
+
+window.coinbase_address = '0x0000000000000000000000000000000000000111'
+
 // function to connect metamask
 async function connectWallet(provider, walletType) {
 	//walletConnect
@@ -4353,7 +4359,18 @@ function getCoinbase() {
 	// else{
 	// 	return window.web3.eth.getCoinbase()
 	// }
-	return window.coinbase_address
+
+	if(window.IS_CONNECTED)
+	{
+		window.coinbase_address
+	}
+	else
+	{
+		window.coinbase_address = '0x0000000000000000000000000000000000000111';
+	}
+
+
+	return '0x0000000000000000000000000000000000000111'
 }
 
 
