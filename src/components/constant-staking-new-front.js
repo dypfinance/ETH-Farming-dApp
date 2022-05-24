@@ -591,9 +591,9 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                                 <div className='row'>
                                     <div className="col-12">
                                         <div className='row'>
-                                            <div className='col-lg-6'>
+                                            <div className='col-lg-6 col-xs-12'>
                                                 <div className='row token-staking-form'>
-                                                    <div className="col-12">
+                                                    <div className="col-12 padding-mobile">
                                                         <div className="l-box" style={{padding: '0.5rem'}}>
                                                             {is_connected ?
                                                                 <div className="row">
@@ -698,13 +698,13 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                                                                     </div>
                                                                 </div>
                                                                 <div className='input-group '>
-                                                                    <input
+                                                                    <input disabled={!is_connected}
                                                                         value={Number(this.state.depositAmount) > 0 ? this.state.depositAmount : this.state.depositAmount}
                                                                         onChange={e => this.setState({depositAmount: e.target.value})}
                                                                         className='form-control left-radius' placeholder='0'
                                                                         type='text'/>
                                                                     <div className='input-group-append'>
-                                                                        <button
+                                                                        <button disabled={!is_connected}
                                                                             className='btn  btn-primary right-radius btn-max l-light-btn'
                                                                             style={{cursor: 'pointer'}}
                                                                             onClick={this.handleSetMaxDeposit}>
@@ -715,14 +715,14 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                                                             </div>
                                                             <div className='row'>
                                                                 <div style={{paddingRight: '0.3rem'}} className='col-6'>
-                                                                    <button onClick={this.handleApprove}
+                                                                    <button disabled={!is_connected} onClick={this.handleApprove}
                                                                             className='btn  btn-block btn-primary '
                                                                             type='button'>
                                                                         APPROVE
                                                                     </button>
                                                                 </div>
                                                                 <div style={{paddingLeft: '0.3rem'}} className='col-6'>
-                                                                    <button onClick={this.handleStake}
+                                                                    <button disabled={!is_connected} onClick={this.handleStake}
                                                                             className='btn  btn-block btn-primary l-outline-btn'
                                                                             type='submit'>
                                                                         DEPOSIT
@@ -759,7 +759,7 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                                                         <div className='form-group'>
                                                             <label htmlFor='deposit-amount' className='d-block text-left'>WITHDRAW</label>
                                                             <div className='input-group '>
-                                                                <input value={this.state.withdrawAmount} onChange={e => this.setState({ withdrawAmount:e.target.value })} className='form-control left-radius' placeholder='0' type='text' />
+                                                                <input disabled={!is_connected} value={this.state.withdrawAmount} onChange={e => this.setState({ withdrawAmount:e.target.value })} className='form-control left-radius' placeholder='0' type='text' />
                                                                 <div className='input-group-append'>
                                                                     <button className='btn  btn-primary right-radius btn-max l-light-btn' style={{ cursor: 'pointer' }} onClick={this.handleSetMaxWithdraw}>
                                                                         MAX
@@ -767,7 +767,7 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <button title={canWithdraw ? '' : `You recently staked, you can unstake ${cliffTimeInWords}`} disabled={!canWithdraw} className='btn  btn-primary btn-block l-outline-btn' type='submit'>
+                                                        <button title={canWithdraw ? '' : `You recently staked, you can unstake ${cliffTimeInWords}`} disabled={!canWithdraw || !is_connected} className='btn  btn-primary btn-block l-outline-btn' type='submit'>
                                                             WITHDRAW
                                                         </button>
                                                         <p style={{fontSize: '.8rem'}} className='mt-1 text-center text-muted mt-3'>0% fee for withdraw</p>
@@ -791,12 +791,12 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                                                         </div>
                                                         <div className='form-row'>
                                                             <div className='col-md-6 mb-2'>
-                                                                <button className='btn  btn-primary btn-block ' type='submit'>
+                                                                <button disabled={!is_connected} className='btn  btn-primary btn-block ' type='submit'>
                                                                     CLAIM
                                                                 </button>
                                                             </div>
                                                             <div className='col-md-6 mb-2'>
-                                                                <button className='btn  btn-primary btn-block l-outline-btn' type='button' onClick={this.handleReinvest}>
+                                                                <button disabled={!is_connected} className='btn  btn-primary btn-block l-outline-btn' type='button' onClick={this.handleReinvest}>
                                                                     REINVEST
                                                                 </button>
                                                             </div>
@@ -889,11 +889,18 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                                         <td className="text-right"><strong>{pendingDivs}</strong> <small>DYP</small></td>
                                     </tr> */}
 
-                                                    <tr>
-                                                        <td style={{ fontSize: '1rem', paddingTop: '2rem' }} colSpan='2' className='text-center'>
-                                                            <a target='_blank' rel='noopener noreferrer' href={`${window.config.etherscan_baseURL}/token/${reward_token._address}?a=${coinbase}`}>View Transaction History on Etherscan</a> &nbsp; <i style={{ fontSize: '.8rem' }} className='fas fa-external-link-alt'></i>
-                                                        </td>
-                                                    </tr>
+                                                    {is_connected ?
+
+                                                        <tr>
+                                                            <td style={{ fontSize: '1rem', paddingTop: '2rem' }} colSpan='2' className='text-center'>
+                                                                <a target='_blank' rel='noopener noreferrer' href={`${window.config.etherscan_baseURL}/token/${reward_token._address}?a=${coinbase}`}>View Transaction History on Etherscan</a> &nbsp; <i style={{ fontSize: '.8rem' }} className='fas fa-external-link-alt'></i>
+                                                            </td>
+                                                        </tr>
+
+                                                        : ''
+
+                                                    }
+
                                                     {/*<tr>*/}
                                                     {/*    <td style={{ fontSize: '1rem' }} colSpan='2' className='text-center'>*/}
                                                     {/*    <span className='lp-link'>*/}
@@ -901,9 +908,12 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                                                     {/*    </span>*/}
                                                     {/*    </td>*/}
                                                     {/*</tr>*/}
-                                                    <tr>
-                                                        <td colSpan='2'>
-                                                            <div><span style={{fontSize: '.8rem'}}>
+
+
+                                                    {is_connected ?
+                                                        <tr>
+                                                            <td colSpan='2'>
+                                                                <div><span style={{fontSize: '.8rem'}}>
 
                                                         <span style={{ cursor: "pointer" }}>
                                                             <Clipboard
@@ -921,11 +931,12 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
 
 
                                                         <br /><a className='text-muted small' href={this.getReferralLink()}> {this.getReferralLink()} </a></span></div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
+                                                            </td>
+                                                        </tr>
+                                                        : ''
+                                                    }
 
-                                                    </tr>
+
                                                     {isOwner && <tr>
                                                         <td style={{ fontSize: '1rem' }} colSpan='2' className='text-center'>
                                                             <a onClick={this.handleListDownload} target='_blank' rel='noopener noreferrer' href='#'><i style={{ fontSize: '.8rem' }} className='fas fa-download'></i> Download Stakers List </a>

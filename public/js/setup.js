@@ -4352,7 +4352,7 @@ function getCoinbase() {
 	// 	return window.web3.eth.getCoinbase()
 	// }
 
-	if(window.window.IS_CONNECTED)
+	if(window.IS_CONNECTED)
 	{
 		window.coinbase_address
 	}
