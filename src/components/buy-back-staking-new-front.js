@@ -962,7 +962,7 @@ export default function initStaking({ staking, constant, apr, lock, expiration_t
                                     </tr> */}
 
 
-                                                    {!is_connected ?
+                                                    {is_connected ?
 
                                                         <tr>
                                                             <td style={{ fontSize: '1rem', paddingTop: '2rem' }} colSpan='2' className='text-center'>
