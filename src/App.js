@@ -40,7 +40,8 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 
 import initConstantStakingiDYP from './components/constant-staking-idyp-new-front'
 
-import initConstantStakingDai from './components/constant-staking-dai'
+// import initConstantStakingDai from './components/constant-staking-dai'
+import initConstantStakingDai from './components/constant-staking-dai-front'
 
 const eth_address = 'ETH'
 const wbtc_address = '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599'
@@ -343,7 +344,7 @@ class App extends React.Component {
               <Route exact path='/constant-staking-2' render={props => <ConstantStaking2 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
 
               {/*Constant Staking DYP -> DAI*/}
-              <Route exact path='/constant-staking-3' render={props => <ConstantStakingDai the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
+              <Route exact path='/constant-staking-3' render={props => <ConstantStakingDai is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
 
               {/*Buyback New*/}
               <Route exact path='/staking-buyback-1' render={props => <BuybackStaking1 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} {...props} />} />
