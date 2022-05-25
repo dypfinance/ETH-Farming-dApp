@@ -281,7 +281,7 @@ class App extends React.Component {
     render() {
 
       return (
-        <div className="App App-header">
+        <div className="App App-header" style={{overflowX: "hidden"}}>
           <Header darkTheme={this.state.darkTheme} toggleTheme={this.toggleTheme} />
 
           <div style={{minHeight: '550px'}} className='App-container'>
