@@ -4291,7 +4291,7 @@ window.web3 = new Web3('https://mainnet.infura.io/v3/94608dc6ddba490697ec4f9b723
 
 window.ethweb3 = new Web3('https://mainnet.infura.io/v3/94608dc6ddba490697ec4f9b723b586e')
 
-window.coinbase_address = '0x0000000000000000000000000000000000000111'
+// window.coinbase_address = '0x0000000000000000000000000000000000000111'
 
 // function to connect metamask
 async function connectWallet(provider, walletType) {
@@ -4338,18 +4338,27 @@ function param(name) {
 }
 window.param = param
 
+window.cached_contracts_connected = {}
 /**
  *
  * @param {"TOKEN" | "STAKING"} key
  */
 async function getContract(key) {
-    let ABI = window[key+'_ABI']
-    let address = window.config[key.toLowerCase()+'_address']
-    if (!window.cached_contracts[key]) {
-        window.cached_contracts[key] = new window.web3.eth.Contract(ABI, address, {from: await getCoinbase()})
-    }
+	let ABI = window[key+'_ABI']
+	let address = window.config[key.toLowerCase()+'_address']
 
-    return window.cached_contracts[key]
+	if (!window.cached_contracts_connected[key]) {
+		window.cached_contracts_connected[key] = new window.ethweb3.eth.Contract(ABI, address, {from: await getCoinbase()})
+	}
+
+	if(!window.IS_CONNECTED)
+		return window.cached_contracts_connected[key]
+
+	if (!window.cached_contracts[key]) {
+		window.cached_contracts[key] = new window.web3.eth.Contract(ABI, address, {from: await getCoinbase()})
+	}
+
+	return window.cached_contracts[key]
 }
 
 function getCoinbase() {
@@ -4359,18 +4368,7 @@ function getCoinbase() {
 	// else{
 	// 	return window.web3.eth.getCoinbase()
 	// }
-
-	if(window.IS_CONNECTED)
-	{
-		window.coinbase_address
-	}
-	else
-	{
-		window.coinbase_address = '0x0000000000000000000000000000000000000111';
-	}
-
-
-	return '0x0000000000000000000000000000000000000111'
+	return window.coinbase_address
 }
 
 

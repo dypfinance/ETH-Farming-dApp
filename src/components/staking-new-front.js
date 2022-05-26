@@ -85,7 +85,7 @@ export default function initStakingNew({token, staking, constant, liquidity, lp_
                 tokensToBeSwapped: '',
                 tokensToBeDisbursedOrBurnt: '',
 
-                coinbase: '',
+                coinbase: '0x0000000000000000000000000000000000000111',
                 tvl: '',
                 stakingOwner: null,
                 approxDeposit: 100/LP_AMPLIFY_FACTOR,
@@ -478,8 +478,12 @@ export default function initStakingNew({token, staking, constant, liquidity, lp_
         }
 
         refreshBalance = async () => {
-            let coinbase = window.coinbase_address
-            this.setState({coinbase})
+            let coinbase = this.state.coinbase
+
+            if (window.coinbase_address){
+                coinbase = window.coinbase_address
+                this.setState({ coinbase })
+            }
 
             let lp_data = this.props.the_graph_result.lp_data
 
@@ -739,12 +743,7 @@ export default function initStakingNew({token, staking, constant, liquidity, lp_
             tvl_usd = tvl_usd + tvlDYPS
             tvl_usd = getFormattedNumber(tvl_usd, 2)
 
-            let is_connected = false
-
-            if(coinbase !== "0x0000000000000000000000000000000000000111")
-            {
-                is_connected = true
-            }
+            let is_connected = this.props.is_wallet_connected
 
             //console.log(total_stakers)
 
