@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import moment from 'moment'
 import getFormattedNumber from '../functions/get-formatted-number'
 import Address from './address'
@@ -1210,7 +1211,7 @@ export default function initStakingNew({token, staking, constant, liquidity, lp_
                                                 <div className='row' style={{marginLeft: '0px'}}>
                                                     <label className='col-md-8 d-block text-left' style={{fontSize: '1.1rem', fontWeight: '600', padding: '.3rem'}}>MY STATS</label>
                                                     <div className='col-4'>
-                                                        <a rel='noopener noreferrer' href={'/staking-stats-new'} >
+                                                        <NavLink rel='noopener noreferrer' to={'/staking-stats-new'} >
 
                                                             {is_connected &&
 
@@ -1219,7 +1220,7 @@ export default function initStakingNew({token, staking, constant, liquidity, lp_
                                                                 </button>
                                                             }
 
-                                                        </a>
+                                                        </NavLink>
                                                     </div>
                                                 </div>
                                                 <table className='table-stats table table-sm table-borderless'>
