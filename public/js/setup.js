@@ -5295,7 +5295,7 @@ async function getUniswapRouterContract(address=window.config.uniswap_router_add
 
 /* iDYP check Vesting/Staking */
 async function isStaking(holder, stakingAddress) {
-	let tokenContract = new window.web3.eth.Contract(window.CONSTANT_STAKING_ABI, stakingAddress, {from: await getCoinbase()})
+	let tokenContract = new window.ethweb3.eth.Contract(window.CONSTANT_STAKING_ABI, stakingAddress, {from: await getCoinbase()})
 	return await tokenContract.methods.depositedTokens(holder).call()
 }
 
