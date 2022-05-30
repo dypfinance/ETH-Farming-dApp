@@ -249,18 +249,18 @@ export default function initVesting({ staking, buyers, apr, liquidity='ETH', loc
                 this.setState({ coinbase })
             }
 
-            let stakingAddress = ''
-            if (buyers)
-                stakingAddress = window.config.constant_staking_300_address
-            else
-                stakingAddress = window.config.constant_staking_300_address
-            let staked = await window.isStaking(coinbase, stakingAddress)
-            if(staked > 0){
-                if(buyers)
-                    window.location.assign('/vst-private-staking')
-                else
-                    window.location.assign('/vst-private-staking')
-            }
+            // let stakingAddress = ''
+            // if (buyers)
+            //     stakingAddress = window.config.constant_staking_300_address
+            // else
+            //     stakingAddress = window.config.constant_staking_300_address
+            // let staked = await window.isStaking(coinbase, stakingAddress)
+            // if(staked > 0){
+            //     if(buyers)
+            //         window.location.assign('/vst-private-staking')
+            //     else
+            //         window.location.assign('/vst-private-staking')
+            // }
 
             try {
                 let _bal = reward_token_idyp.balanceOf(coinbase)
