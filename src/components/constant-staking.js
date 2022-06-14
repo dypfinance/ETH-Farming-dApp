@@ -6,6 +6,7 @@ import Address from './address'
 import Clipboard from 'react-clipboard.js'
 import ReactTooltip from 'react-tooltip'
 import Boxes from './boxes'
+import Modal from "./modal";
 
 export default function initStaking({ staking, apr, liquidity='ETH', lock, expiration_time }) {
 
@@ -73,7 +74,7 @@ export default function initStaking({ staking, apr, liquidity='ETH', lock, expir
                 depositAmount: '',
                 withdrawAmount: '',
 
-                coinbase: '',
+                coinbase: '0x0000000000000000000000000000000000000111',
                 tvl: '',
                 referralFeeEarned: '',
                 stakingOwner: null,
@@ -86,6 +87,30 @@ export default function initStaking({ staking, apr, liquidity='ETH', lock, expir
                 disburseDuration: ''
 
             }
+
+            this.showModal = this.showModal.bind(this)
+            this.hideModal = this.hideModal.bind(this)
+
+            this.showPopup = this.showPopup.bind(this)
+            this.hidePopup = this.hidePopup.bind(this)
+        }
+
+        showModal = () => {
+            this.setState({ show: true })
+        }
+
+        hideModal = () => {
+            this.setState({ show: false })
+
+        }
+
+        showPopup = () => {
+            this.setState({ popup: true })
+        }
+
+        hidePopup = () => {
+            this.setState({ popup: false })
+
         }
 
         handleListDownload = async (e) => {
@@ -184,8 +209,14 @@ export default function initStaking({ staking, apr, liquidity='ETH', lock, expir
         }
 
         refreshBalance = async () => {
-            let coinbase = window.coinbase_address
-            this.setState({ coinbase })
+
+            let coinbase = this.state.coinbase
+
+            if (window.coinbase_address){
+                coinbase = window.coinbase_address
+                this.setState({ coinbase })
+            }
+
             console.log(true)
             try {
                 let _bal = reward_token.balanceOf(coinbase)
@@ -319,11 +350,58 @@ export default function initStaking({ staking, apr, liquidity='ETH', lock, expir
 
             let id = Math.random().toString(36)
 
+            let is_connected = this.props.is_wallet_connected
+
             return (<div>
                     
                     <div className='container'>
-                        <div className='token-staking mt-5'>
-                            <div className='row'>
+                        <Modal show={this.state.show} handleConnection={this.props.handleConnection} handleConnectionWalletConnect={this.props.handleConnectionWalletConnect} handleClose={this.hideModal} />
+                        <div className='token-staking mt-4'>
+                            <div className='row p-3 p-sm-0 p-md-0'>
+                                <div className="col-12">
+                                    <div className='row'>
+                                        <div className='col-lg-6 col-xs-12'>
+                                            <div className='row token-staking-form'>
+                                                <div className="col-12">
+                                                    <div className="l-box" style={{padding: '0.5rem'}}>
+                                                        {is_connected ?
+                                                            <div className="row justify-content-center">
+                                                                <div className="col-9 col-sm-8 col-md-7 text-center text-md-left" style={{marginTop: '0px'}}>
+                                                                    <img src="img/connected.png" style={{marginRight: '10px', marginTop: '3px'}}
+                                                                         alt="wallet" />
+                                                                    <span htmlFor="deposit-amount" style={{margin: '0', top: '3px', position: 'relative'}}>
+                                                                    Wallet has been connected
+                                                                </span>
+                                                                </div>
+                                                                <div className="col-8 col-sm-6 col-md-5 text-center">
+                                                                    <div style={{marginTop: '5px', paddingRight: '15px'}}>
+                                                                        <Address style={{fontFamily: 'monospace'}} a={coinbase} />
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            :
+                                                            <div className="row justify-content-center">
+                                                                <div className="col-11 col-sm-8 col-md-8 text-center text-md-left mb-3 mb-md-0" style={{marginTop: '0px'}}>
+                                                                    <img src="img/icon/wallet.svg" style={{marginRight: '10px', marginTop: '3px'}}
+                                                                         alt="wallet" />
+                                                                    <label htmlFor="deposit-amount" style={{margin: '0', top: '3px', position: 'relative'}}>
+                                                                        Please connect wallet to use this dApp
+                                                                    </label>
+                                                                </div>
+                                                                <div className="col-10 col-md-4 mb-3 mb-md-0">
+                                                                    <button type="submit" onClick={this.showModal} className="btn  btn-block btn-primary l-outline-btn">
+                                                                        Connect Wallet
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className='col-lg-6'>
                                     <div className='row token-staking-form'>
                                         <div className='col-12'>
@@ -493,12 +571,12 @@ export default function initStaking({ staking, apr, liquidity='ETH', lock, expir
                                         <h3 style={{ fontSize: '1.1rem', fontWeight: '600', padding: '.3rem' }}>STATS</h3>
                                         <table className='table-stats table table-sm table-borderless'>
                                             <tbody>
-                                            <tr>
-                                                <th>My Address</th>
-                                                <td className='text-right'>
-                                                    <Address style={{ fontFamily: 'monospace' }} a={coinbase} />
-                                                </td>
-                                            </tr>
+                                            {/*<tr>*/}
+                                            {/*    <th>My Address</th>*/}
+                                            {/*    <td className='text-right'>*/}
+                                            {/*        <Address style={{ fontFamily: 'monospace' }} a={coinbase} />*/}
+                                            {/*    </td>*/}
+                                            {/*</tr>*/}
                                             <tr>
                                                 <th>Contract Address</th>
                                                 <td className='text-right'>
