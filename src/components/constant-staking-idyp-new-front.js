@@ -238,7 +238,8 @@ export default function initStaking({ staking, apr, liquidity='ETH', lock, expir
             }
 
             let { the_graph_result } = this.props
-            let usd_per_dyps = the_graph_result.price_DYPS ? the_graph_result.price_DYPS : 1
+            // let usd_per_dyps = the_graph_result.price_DYPS ? the_graph_result.price_DYPS : 1
+            let usd_per_dyps = 0
 
             try {
                 let _bal = reward_token.balanceOf(coinbase)
