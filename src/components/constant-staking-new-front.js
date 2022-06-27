@@ -163,8 +163,6 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
             window._refreshBalInterval = setInterval(this.refreshBalance, 3000)
 
             this.getPriceDYP()
-
-            this.getTotalTvl().then()
         }
 
         getTotalTvl = async () =>
@@ -315,6 +313,8 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                 coinbase = window.coinbase_address
                 this.setState({ coinbase })
             }
+
+            this.getTotalTvl()
 
             let lp_data = this.props.the_graph_result.token_data
             //console.log({lp_data})
@@ -526,14 +526,31 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                                 <Popup show={this.state.popup} handleClose={this.hidePopup} >
                                     <div className="earn-hero-content p4token-wrapper">
                                         <p className='h3'><b>DYP Staking</b></p>
-                                        <p>Stake your DYP tokens and earn DYP with no Impermanent Loss.</p>
-                                        <p>To start earning, all you need is to deposit DYP tokens into
-                                            the Staking contract and earn DYP as rewards.</p>
-                                        <p>The staking pools have the REINVEST function integrated,
-                                            meaning that you can automatically add your daily rewards
-                                            to the staking pool. Moreover, the DYP Referral is available.
-                                            If you refer DYP to your friends, 5% of your friends’ rewards
-                                            will automatically be sent to you whenever they stake DYP.</p>
+                                        <p>Stake your DYP tokens and earn {this.state.apy2 == 0 ? (
+                                            <Dots />
+                                        ) : (
+                                            getFormattedNumber(this.state.apy2,0)
+                                        )
+                                        }% APR with no Impermanent Loss.</p>
+                                        <p>To start earning, all you need is to deposit DYP tokens into the Staking
+                                            contract. You can choose from two different staking options, with
+                                            rewards starting from {this.state.apy1 == 0 ? (
+                                                <Dots />
+                                            ) : (
+                                                getFormattedNumber(this.state.apy1,0)
+                                            )
+                                            }% APR up to {this.state.apy2 == 0 ? (
+                                                <Dots />
+                                            ) : (
+                                                getFormattedNumber(this.state.apy2,0)
+                                            )
+                                            }% APR, depending on the lock time
+                                            from a minimum of zero-days up to a maximum of 90 days.</p>
+                                        <p>The staking pools have the REINVEST function integrated, meaning that
+                                            you can automatically add your daily rewards to the staking pool.
+                                            Moreover, the DYP Referral is available. If you refer DYP to your
+                                            friends, 5% of your friends’ rewards will automatically be sent to
+                                            you whenever they stake DYP.</p>
                                     </div>
 
                                 </Popup>
