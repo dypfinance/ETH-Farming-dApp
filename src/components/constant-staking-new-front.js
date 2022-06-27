@@ -526,14 +526,14 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                                 <Popup show={this.state.popup} handleClose={this.hidePopup} >
                                     <div className="earn-hero-content p4token-wrapper">
                                         <p className='h3'><b>DYP Staking</b></p>
-                                        <p>Stake your DYP tokens and earn 25% APR in ETH with no Impermanent Loss.</p>
-                                        <p>To start earning, all you need is to deposit DYP tokens into the
-                                            Staking contract and earn ETH as rewards.</p>
-                                        <p>The staking pools have the REINVEST function integrated, meaning
-                                            that you can automatically add your daily rewards to the staking
-                                            pool. Moreover, the DYP Referral is available. If you refer DYP
-                                            to your friends, 5% of your friends’ rewards will automatically
-                                            be sent to you whenever they stake DYP.</p>
+                                        <p>Stake your DYP tokens and earn DYP with no Impermanent Loss.</p>
+                                        <p>To start earning, all you need is to deposit DYP tokens into
+                                            the Staking contract and earn DYP as rewards.</p>
+                                        <p>The staking pools have the REINVEST function integrated,
+                                            meaning that you can automatically add your daily rewards
+                                            to the staking pool. Moreover, the DYP Referral is available.
+                                            If you refer DYP to your friends, 5% of your friends’ rewards
+                                            will automatically be sent to you whenever they stake DYP.</p>
                                     </div>
 
                                 </Popup>

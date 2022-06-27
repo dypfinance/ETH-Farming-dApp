@@ -80,11 +80,11 @@ const StakingUsdt90 = initStaking({token: window.token_usdt_90, staking: window.
 // const StakingDAI = initStaking({token: window.token_dai, staking: window.staking_dai, lp_symbol: 'DYP/DAI', reward: '30000', lock: '3'})
 
 //Constant Staking New
-const ConstantStaking1 = initConstantStakingNew({ staking: window.constant_staking_new1, apr: 25, liquidity: eth_address, expiration_time: '14 December 2022' })
-const ConstantStaking2 = initConstantStakingNew({ staking: window.constant_staking_new2, apr: 50, liquidity: eth_address, expiration_time: '14 December 2022' })
+const ConstantStaking1 = initConstantStakingNew({ staking: window.constant_staking_new1, apr: 25, liquidity: eth_address, expiration_time: '14 December 2022', other_info: false })
+const ConstantStaking2 = initConstantStakingNew({ staking: window.constant_staking_new2, apr: 50, liquidity: eth_address, expiration_time: '14 December 2022', other_info: false })
 
 //Constant Staking NEW DYP -> DAI
-const ConstantStakingDai = initConstantStakingDai({ staking: window.constant_stakingdai, apr: 25, liquidity: eth_address, expiration_time: '10 May 2023' })
+const ConstantStakingDai = initConstantStakingDai({ staking: window.constant_stakingdai, apr: 25, liquidity: eth_address, expiration_time: '10 May 2023', other_info: true })
 
 //Buyback New
 const BuybackStaking1 = initBuybackStakingNew({ staking: window.buyback_staking1_1, constant: window.constant_staking_new3, apr: 30, expiration_time: '14 December 2022' })

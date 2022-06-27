@@ -9,7 +9,7 @@ import Boxes from './boxes'
 import Modal from "./modal";
 import Popup from "./popup";
 
-export default function initConstantStakingNew({ staking, apr, liquidity='ETH', lock, expiration_time }) {
+export default function initConstantStakingNew({ staking, apr, liquidity='ETH', lock, expiration_time, other_info }) {
 
     let { reward_token, BigNumber, alertify, reward_token_idyp, token_dyps, reward_token_dai } = window
     let token_symbol = 'DYP'
@@ -174,6 +174,12 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
 
         handleApprove = (e) => {
             e.preventDefault()
+
+            if(other_info){
+                window.$.alert('This pool no longer accepts deposits!')
+                return;
+            }
+
             let amount = this.state.depositAmount
             amount = new BigNumber(amount).times(1e18).toFixed(0)
             reward_token.approve(staking._address, amount)
@@ -195,6 +201,11 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
 
         handleStake = async (e) => {
             e.preventDefault()
+
+            if(other_info){
+                window.$.alert('This pool no longer accepts deposits!')
+                return;
+            }
 
             let amount = this.state.depositAmount
             amount = new BigNumber(amount).times(1e18).toFixed(0)
