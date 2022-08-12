@@ -12,7 +12,7 @@ import {Button} from "@material-ui/core";
 import Modal from "./modal";
 import Dots from "./elements/dots";
 
-export default function initConstantStakingNew({ staking, apr, liquidity='ETH', lock, expiration_time }) {
+export default function initConstantStakingNew({ staking, apr, liquidity='ETH', lock, expiration_time, fee }) {
 
     let { reward_token, BigNumber, alertify, reward_token_idyp, token_dyps } = window
     let token_symbol = 'DYP'
@@ -325,7 +325,7 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
             let usd_per_idyp = the_graph_result.token_data ? the_graph_result.token_data["0xbd100d061e120b2c67a24453cf6368e63f1be056"].token_price_usd : 1
             // let usd_per_dyps = the_graph_result.price_DYPS ? the_graph_result.price_DYPS : 1
             let usd_per_dyps = 0
-            let apy = new BigNumber(apr).div(1e2).times(usd_per_idyp).div(usd_per_token).times(1e2).toFixed(2)
+            let apy = new BigNumber(apr).minus(fee).div(1e2).times(usd_per_idyp).div(usd_per_token).times(1e2).toFixed(2)
 
             this.setState({apy})
 
@@ -729,7 +729,8 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
                                                             <p style={{fontSize: '.8rem'}}
                                                                className='mt-1 text-center mb-0 text-muted mt-3'>
                                                                 {/* Some info text here.<br /> */}
-                                                                Please approve before staking. 0% fee for deposit.
+                                                                Please approve before staking. PERFORMANCE FEE {fee}%<br/>
+                                                                Performance fees are already subtracted from the displayed APR.
                                                             </p>
 
                                                         </form>

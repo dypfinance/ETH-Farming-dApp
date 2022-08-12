@@ -80,22 +80,22 @@ const StakingUsdt90 = initStaking({token: window.token_usdt_90, staking: window.
 // const StakingDAI = initStaking({token: window.token_dai, staking: window.staking_dai, lp_symbol: 'DYP/DAI', reward: '30000', lock: '3'})
 
 //Constant Staking New
-const ConstantStaking1 = initConstantStakingNew({ staking: window.constant_staking_new1, apr: 25, liquidity: eth_address, expiration_time: '14 December 2022', other_info: false })
-const ConstantStaking2 = initConstantStakingNew({ staking: window.constant_staking_new2, apr: 50, liquidity: eth_address, expiration_time: '14 December 2022', other_info: false })
+const ConstantStaking1 = initConstantStakingNew({ staking: window.constant_staking_new1, apr: 25, liquidity: eth_address, expiration_time: '14 December 2022', other_info: false, fee: 0.25 })
+const ConstantStaking2 = initConstantStakingNew({ staking: window.constant_staking_new2, apr: 50, liquidity: eth_address, expiration_time: '14 December 2022', other_info: false, fee: 0.50 })
 
 //Constant Staking NEW DYP -> DAI
 const ConstantStakingDai = initConstantStakingDai({ staking: window.constant_stakingdai, apr: 25, liquidity: eth_address, expiration_time: '10 May 2023', other_info: true })
 
 //Buyback New
-const BuybackStaking1 = initBuybackStakingNew({ staking: window.buyback_staking1_1, constant: window.constant_staking_new3, apr: 30, expiration_time: '14 December 2022' })
-const BuybackStaking2 = initBuybackStakingNew({ staking: window.buyback_staking1_2, constant: window.constant_staking_new4, apr: 100, expiration_time: '14 December 2022' })
+const BuybackStaking1 = initBuybackStakingNew({ staking: window.buyback_staking1_1, constant: window.constant_staking_new3, apr: 30, expiration_time: '14 December 2022', fee: 1})
+const BuybackStaking2 = initBuybackStakingNew({ staking: window.buyback_staking1_2, constant: window.constant_staking_new4, apr: 100, expiration_time: '14 December 2022', fee: 3.5})
 
 //Farming New
-const StakingNew1 = initStakingNew({token: window.token_new, staking: window.farming_new_1, constant: window.constant_staking_new5, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022'})
-const StakingNew2 = initStakingNew({token: window.token_new, staking: window.farming_new_2, constant: window.constant_staking_new6, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022'})
-const StakingNew3 = initStakingNew({token: window.token_new, staking: window.farming_new_3, constant: window.constant_staking_new7, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022'})
-const StakingNew4 = initStakingNew({token: window.token_new, staking: window.farming_new_4, constant: window.constant_staking_new8, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022'})
-const StakingNew5 = initStakingNew({token: window.token_new, staking: window.farming_new_5, constant: window.constant_staking_new9, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022'})
+const StakingNew1 = initStakingNew({token: window.token_new, staking: window.farming_new_1, constant: window.constant_staking_new5, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022', fee: 0.3})
+const StakingNew2 = initStakingNew({token: window.token_new, staking: window.farming_new_2, constant: window.constant_staking_new6, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022', fee: 0.3})
+const StakingNew3 = initStakingNew({token: window.token_new, staking: window.farming_new_3, constant: window.constant_staking_new7, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022', fee: 0.4})
+const StakingNew4 = initStakingNew({token: window.token_new, staking: window.farming_new_4, constant: window.constant_staking_new8, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022', fee: 0.8})
+const StakingNew5 = initStakingNew({token: window.token_new, staking: window.farming_new_5, constant: window.constant_staking_new9, liquidity: eth_address, lp_symbol:'USD', reward: '30,000', lock: '3 Days', rebase_factor: rebase_factors[0], expiration_time: '14 December 2022', fee: 1.2})
 
 //Vesting & staking 3 months
 const eth_address2 = 'ETH'
