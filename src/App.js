@@ -103,8 +103,10 @@ const Vesting = initVesting({ staking: window.constant_staking_200, buyers: true
 const VestingStaking = initVestingStaking({ staking: window.constant_staking_300, apr: 0, liquidity: eth_address2, expiration_time: '16 February 2022' })
 
 //Constant Staking iDYP
-const ConstantStakingiDYP1 = initConstantStakingiDYP({ staking: window.constant_staking_idyp_1, apr: 20, liquidity: eth_address, expiration_time: '28 February 2023' })
-const ConstantStakingiDYP2 = initConstantStakingiDYP({ staking: window.constant_staking_idyp_2, apr: 45, liquidity: eth_address, expiration_time: '28 February 2023' })
+const ConstantStakingiDYP1 = initConstantStakingiDYP({ staking: window.constant_staking_idyp_1, apr: 20, liquidity: eth_address, expiration_time: '28 February 2023', other_info: true, fee_s: 0, fee_u: 0.25 })
+const ConstantStakingiDYP2 = initConstantStakingiDYP({ staking: window.constant_staking_idyp_2, apr: 45, liquidity: eth_address, expiration_time: '28 February 2023', other_info: true, fee_s: 0, fee_u: 0.25 })
+const ConstantStakingiDYP3 = initConstantStakingiDYP({ staking: window.constant_staking_idyp_3, apr: 15, liquidity: eth_address, expiration_time: '15 August 2023', other_info: false, fee_s: 1, fee_u: 0 })
+const ConstantStakingiDYP4 = initConstantStakingiDYP({ staking: window.constant_staking_idyp_4, apr: 30, liquidity: eth_address, expiration_time: '15 August 2023', other_info: false, fee_s: 3.5, fee_u: 0 })
 
 
 let { BigNumber, LP_IDs, LP_IDs_V2 } = window
@@ -361,6 +363,8 @@ class App extends React.Component {
 
               <Route exact path="/staking-idyp-1" render={props => <ConstantStakingiDYP1 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
               <Route exact path="/staking-idyp-2" render={props => <ConstantStakingiDYP2 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
+              <Route exact path="/staking-idyp-3" render={props => <ConstantStakingiDYP3 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
+              <Route exact path="/staking-idyp-4" render={props => <ConstantStakingiDYP4 is_wallet_connected={this.state.is_wallet_connected} handleConnection={this.handleConnection} handleConnectionWalletConnect={this.handleConnectionWalletConnect} the_graph_result={this.state.the_graph_result_ETH_V2} referrer={this.state.referrer} {...props} />} />
 
           </div>
 

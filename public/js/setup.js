@@ -197,6 +197,8 @@ window.config = {
 	// Constant staking iDYP
 	constant_stakingold_130_address: '0x9ea966b4023049bff858bb5e698ecff24ea54c4a',
 	constant_stakingold_140_address: '0x3fab09acaeddaf579d7a72c24ef3e9eb1d2975c4',
+	constant_stakingold_150_address: '0x50014432772b4123d04181727c6edeab34f5f988',
+	constant_stakingold_160_address: '0xd4be7a106ed193bee39d6389a481ec76027b2660',
 
 	/*buyback*/
 	buyback_staking_address: '0xe5262f38bf13410a79149cb40429f8dc5e830542',
@@ -4963,6 +4965,9 @@ window.constant_staking_300 = new CONSTANT_STAKING("CONSTANT_STAKING_300")
 /* Constant staking iDYP */
 window.constant_staking_idyp_1 = new CONSTANT_STAKING_OLD("CONSTANT_STAKINGOLD_130")
 window.constant_staking_idyp_2 = new CONSTANT_STAKING_OLD("CONSTANT_STAKINGOLD_140")
+window.constant_staking_idyp_3 = new CONSTANT_STAKING_OLD("CONSTANT_STAKINGOLD_150")
+window.constant_staking_idyp_4 = new CONSTANT_STAKING_OLD("CONSTANT_STAKINGOLD_160")
+
 
 
 /**
