@@ -229,6 +229,11 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
         handleClaimDivs = async (e) => {
             e.preventDefault()
 
+            if (this.state.stakingTime != 0 && (Date.now() - this.state.stakingTime >= this.state.cliffTime)) {
+                window.$.alert('Contract Expired! Your lock time ended so please withdraw your funds and move to a new pool.')
+                return;
+            }
+
             let address = this.state.coinbase
             let amount = await staking.getTotalPendingDivs(address)
 
@@ -374,6 +379,11 @@ export default function initConstantStakingNew({ staking, apr, liquidity='ETH', 
 
         handleReinvest = async (e) => {
             e.preventDefault()
+
+            if (this.state.stakingTime != 0 && (Date.now() - this.state.stakingTime >= this.state.cliffTime)) {
+                window.$.alert('Contract Expired! Your lock time ended so please withdraw your funds and move to a new pool.')
+                return;
+            }
 
             let address = this.state.coinbase
             let amount = await staking.getTotalPendingDivs(address)

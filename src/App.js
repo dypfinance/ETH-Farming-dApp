@@ -84,7 +84,7 @@ const ConstantStaking1 = initConstantStakingNew({ staking: window.constant_staki
 const ConstantStaking2 = initConstantStakingNew({ staking: window.constant_staking_new2, apr: 50, liquidity: eth_address, expiration_time: '14 December 2022', other_info: false, fee: 0.50 })
 
 //Constant Staking NEW DYP -> DAI
-const ConstantStakingDai = initConstantStakingDai({ staking: window.constant_stakingdai, apr: 25, liquidity: eth_address, expiration_time: '10 May 2023', other_info: true })
+const ConstantStakingDai = initConstantStakingDai({ staking: window.constant_stakingdai, apr: 25, liquidity: eth_address, expiration_time: 'Expired', other_info: true })
 
 //Buyback New
 const BuybackStaking1 = initBuybackStakingNew({ staking: window.buyback_staking1_1, constant: window.constant_staking_new3, apr: 30, expiration_time: '14 December 2022', fee: 1})
